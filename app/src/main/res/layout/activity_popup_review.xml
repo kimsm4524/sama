@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ReviewPopup"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="거래 만족도"
+        android:textColor="#0000ff"
+        android:textSize="30sp"
+        android:gravity="center"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/review_star"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/star_big_on"
+            android:onClick="SetStar" />
+
+        <Button
+            android:id="@+id/review_star1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/star_big_on"
+            android:onClick="SetStar" />
+
+        <Button
+            android:id="@+id/review_star2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/star_big_on"
+            android:onClick="SetStar" />
+
+        <Button
+            android:id="@+id/review_star3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/star_big_on"
+            android:onClick="SetStar" />
+
+        <Button
+            android:id="@+id/review_star4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:drawable/star_big_on"
+            android:onClick="SetStar" />
+    </RadioGroup>
+
+
+    <EditText
+        android:id="@+id/review_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/review_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="작성하기"
+            android:onClick="Notice_Review"/>
+
+        <Button
+            android:id="@+id/review_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="취소하기"
+            android:onClick="Cancel_Review"/>
+    </LinearLayout>
+</LinearLayout>

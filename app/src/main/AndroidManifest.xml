@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.wlgusdn.myapplication">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.DIAL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="사마"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <service
+            android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
+            android:enabled="true" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".MainActivity"
+            android:label="dddddd"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DaumWebView" />
+        <activity android:name=".splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PictureAttacher" />
+        <activity android:name=".ArlamPopup" />
+        <activity android:name=".Basket" />
+        <activity android:name=".Account_Setting" />
+        <activity android:name=".Account" />
+        <activity android:name=".TradeAlready" />
+        <activity android:name=".TradeSelect" />
+        <activity android:name=".TradeBuyerYet" />
+        <activity android:name=".TradeBidderYet" />
+        <activity android:name=".BuyNotice" />
+        <activity android:name=".BidNotice" />
+        <activity android:name=".Search" />
+        <activity android:name=".Complete" />
+        <activity
+            android:name=".OpponentInfoPopup"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".Declaration"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".ReviewPopup"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".SortPopup"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".EtcPopup"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".Login" />
+        <activity android:name=".MyTrade" />
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".Trade" />
+        <activity android:name=".webview" />
+        <activity android:name=".webviewactivity" />
+        <activity android:name=".WebViewActivity"></activity>
+    </application>
+
+</manifest>

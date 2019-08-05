@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".Search">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <android.support.v4.widget.SwipeRefreshLayout
+
+            android:id="@+id/Searching_ReFresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/Scv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.GridLayout
+                        android:id="@+id/one"
+                        android:layout_width="384dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        app:columnCount="3"
+                        app:rowCount="2">
+
+                        <Button
+                            android:id="@+id/SearchButton1"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="SelectCategory"
+                            android:text="가구" />
+
+                        <Button
+                            android:id="@+id/SearchButton2"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:onClick="SelectCategory"
+                            android:text="식기" />
+
+                        <Button
+                            android:id="@+id/SearchButton3"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:onClick="SelectCategory"
+                            android:text="식료품" />
+
+                        <Button
+                            android:id="@+id/SearchButton4"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="SelectCategory"
+                            android:text="미정" />
+
+                        <Button
+                            android:id="@+id/SearchButton5"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:onClick="SelectCategory"
+                            android:text="미정" />
+
+                        <Button
+                            android:id="@+id/SearchButton6"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:onClick="SelectCategory"
+                            android:text="미정" />
+                    </android.support.v7.widget.GridLayout>
+
+                    <LinearLayout
+                        android:id="@+id/two"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/Searching_Category_Textview"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="전체"
+                            android:textSize="20sp" />
+
+                        <Button
+                            android:id="@+id/SortText"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="right"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:onClick="SelectSort"
+                            android:text="최신순 ▼"
+                            android:textSize="20sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/three"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/Search_Edit_Title"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:hint="검색어를 입력해주세요." />
+
+                        <Button
+                            android:id="@+id/Search_Button_TitleSearch"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="검색"
+                            android:onClick="TitleSearch"/>
+                    </LinearLayout>
+
+                    <GridView
+                        android:id="@+id/Search_Grid"
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:numColumns="2">
+
+                    </GridView>
+
+
+                </LinearLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".BuyNotice"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="원하는 물품의 사진을 등록하세요.미등록시 기본 사진으로 등록됩니다."
+                    android:textColor="#0000ff"
+                    android:textSize="16sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30dp">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text=" 제목 : "
+                        android:textColor="#0000ff"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/Buy_Title"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:ems="10"
+                        android:hint="무제"
+                        android:inputType="textPersonName" />
+                </LinearLayout>
+
+                <android.support.v7.widget.GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    app:columnCount="2"
+                    app:rowCount="2">
+
+                    <FrameLayout
+                        android:id="@+id/Picture"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp">
+
+                        <ImageView
+                            android:id="@+id/Pictureiv"
+                            android:layout_width="150dp"
+                            android:layout_height="100dp"
+                            android:adjustViewBounds="true"
+                            android:onClick="UpLoadPicture"
+                            app:srcCompat="@drawable/ic_menu_gallery"
+                            android:scaleType="centerCrop"/>
+
+                        <ImageButton
+                            android:id="@+id/Picture_Delete"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="right"
+                            android:onClick="DeletePicture"
+                            android:visibility="gone"
+                            app:srcCompat="@android:drawable/ic_delete" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/Picture1"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/Pictureiv1"
+                            android:layout_width="150dp"
+                            android:layout_height="100dp"
+                            android:adjustViewBounds="true"
+                            android:onClick="UpLoadPicture"
+                            android:scaleType="centerCrop"/>
+
+                        <ImageButton
+                            android:id="@+id/Picture_Delete1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="right"
+                            android:onClick="DeletePicture"
+                            android:visibility="gone"
+                            app:srcCompat="@android:drawable/ic_delete" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/Picture2"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/Pictureiv2"
+                            android:layout_width="150dp"
+                            android:layout_height="100dp"
+                            android:adjustViewBounds="true"
+                            android:onClick="UpLoadPicture"
+                            android:scaleType="centerCrop"/>
+
+                        <ImageButton
+                            android:id="@+id/Picture_Delete2"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="right"
+                            android:onClick="DeletePicture"
+                            android:visibility="gone"
+                            app:srcCompat="@android:drawable/ic_delete" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/Picture3"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/Pictureiv3"
+                            android:layout_width="150dp"
+                            android:layout_height="100dp"
+                            android:adjustViewBounds="true"
+                            android:onClick="UpLoadPicture"
+                            android:scaleType="centerCrop"/>
+
+                        <ImageButton
+                            android:id="@+id/Picture_Delete3"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="right"
+                            android:onClick="DeletePicture"
+                            android:visibility="gone"
+                            app:srcCompat="@android:drawable/ic_delete" />
+
+                    </FrameLayout>
+                </android.support.v7.widget.GridLayout>
+
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="카테고리"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textColor="#0000ff"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/Furniture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="SelectCategory"
+                    android:text="가구" />
+
+                <Button
+                    android:id="@+id/Tableware"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="SelectCategory"
+                    android:text="식기" />
+
+                <Button
+                    android:id="@+id/Grocery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="SelectCategory"
+                    android:text="식료품" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/yet1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="추후"
+                    android:onClick="SelectCategory"/>
+
+                <Button
+                    android:id="@+id/yet2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="추후"
+                    android:onClick="SelectCategory"/>
+
+                <Button
+                    android:id="@+id/yet3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="추후"
+                    android:onClick="SelectCategory"/>
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/Buy_Notice_RadioGroup1"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/radioButton1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="Select"
+                    android:text="" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="Select"
+                    android:text="" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="Select"
+                    android:text="" />
+
+
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/Buy_Notice_RadioGroup2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/radioButton4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="Select"
+                    android:text="" />
+
+                <RadioButton
+                    android:id="@+id/radioButton5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="Select"
+                    android:text="" />
+
+                <RadioButton
+                    android:id="@+id/radioButton6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="Select"
+                    android:text="" />
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/Etc"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:background="@drawable/ic_launcher_rectangle_inaccount"
+                android:ems="10"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:visibility="gone" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:text="수량"
+                    android:textColor="#0000ff"/>
+
+                <EditText
+                    android:id="@+id/Countitem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="0"
+                    android:inputType="number" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="left"
+                    android:textSize="20sp"
+                    android:text="개" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/Buy_AddressGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:text="배송주소"
+                        android:textColor="#0000ff"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/Buy_MyAddress"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="등록된 주소" />
+
+                    <RadioButton
+                        android:id="@+id/Buy_NewAddress"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="새로운 주소" />
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+
+
+                <TextView
+                    android:id="@+id/Buy_Address"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:ems="10"
+                    android:inputType="textMultiLine"
+                    android:textSize="30sp"
+                    android:gravity="center"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="희망 날짜"
+                        android:textColor="#0000ff"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/button5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="NoticeDate"
+                        android:text="날짜 설정" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/YearText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="right"
+                        android:text="년" />
+
+                    <TextView
+                        android:id="@+id/MonthText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="right"
+                        android:text="월" />
+
+                    <TextView
+                        android:id="@+id/DayText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="right"
+                        android:text="일" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="원하는 조건"
+                    android:textColor="#0000ff"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/Item_Character"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:hint="엔틱한 느낌, 밝은 색상의 나무, 목재는 느티나무, 높이는 50 ~ 60cm 등등 "
+                    android:inputType="textMultiLine"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+
+
+
+            <Button
+                android:id="@+id/Notice_Register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="등록하기"
+                android:onClick="Notice_Register"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

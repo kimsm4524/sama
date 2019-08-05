@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textSize="40sp"
+                android:text="구매자의 조건" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/Complete_ViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="384dp"
+                android:onClick="GoAttacher" >
+
+            </android.support.v4.view.ViewPager>
+
+            <LinearLayout
+                android:id="@+id/Complete_Layout2"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:id="@+id/Complete_Radio_Group"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/Complete_RadioText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="right|center"
+                        android:text=""
+                        android:textColor="#0000ff"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/Complete_RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:gravity="left|center"
+                        android:text="" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Complete_Count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="수량 : 110 개"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/Complete_Condition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="원하는 조건 : 엔틱한 느낌, 밝은 색상의 나무, 목재는 느티나무, 높이는 50 ~ 60cm 등등"
+                android:textSize="20sp" />
+
+
+            <TextView
+                android:id="@+id/textView41"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="판매자의 조건"
+                android:textSize="40sp" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/Complete_ViewPager1"
+                android:layout_width="match_parent"
+                android:layout_height="384dp"
+                android:onClick="GoAttacher" >
+
+            </android.support.v4.view.ViewPager>
+
+            <LinearLayout
+                android:id="@+id/Complete_Layout21"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:id="@+id/Complete_Radio_Group1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/Complete_RadioText1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="right|center"
+                        android:text=""
+                        android:textColor="#0000ff"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/Complete_RadioButton1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:gravity="left|center"
+                        android:text="" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Complete_Count1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="수량 : 110 개"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/Complete_Condition1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="원하는 조건 : 엔틱한 느낌, 밝은 색상의 나무, 목재는 느티나무, 높이는 50 ~ 60cm 등등"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

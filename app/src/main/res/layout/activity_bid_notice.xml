@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".BidNotice"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="336dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:text="판매하는 물품의 사진을 등록하세요.미등록시 기본 사진으로 등록됩니다."
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textColor="#0000ff" />
+
+
+                <android.support.v7.widget.GridLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:columnCount="2"
+                    app:rowCount="2">
+
+                    <ImageView
+                        android:id="@+id/BidPictureiv"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:adjustViewBounds="true"
+                        android:onClick="UpLoadPicture"
+                        app:srcCompat="@drawable/ic_menu_gallery"
+                        android:scaleType="centerCrop"/>
+
+                    <ImageView
+                        android:id="@+id/BidPictureiv1"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="20dp"
+                        android:adjustViewBounds="true"
+                        android:onClick="UpLoadPicture"
+                        app:srcCompat="@android:color/background_dark"
+                        android:scaleType="centerCrop"/>
+
+                    <ImageView
+                        android:id="@+id/BidPictureiv2"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="20dp"
+                        android:adjustViewBounds="true"
+                        android:onClick="UpLoadPicture"
+                        app:srcCompat="@android:color/background_dark"
+                        android:scaleType="centerCrop"/>
+
+                    <ImageView
+                        android:id="@+id/BidPictureiv3"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:adjustViewBounds="true"
+                        android:onClick="UpLoadPicture"
+                        app:srcCompat="@android:color/background_dark"
+                        android:scaleType="centerCrop"/>
+                </android.support.v7.widget.GridLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:id="@+id/Bid_Radio_Group"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="기성품"
+                        android:textColor="#0000ff"
+                        android:textSize="20sp"  />
+
+                    <RadioButton
+                        android:id="@+id/BidRadioButton1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="주문제작 가능"
+                        android:textColor="#0000ff"
+                        android:textSize="20sp" />
+
+                    <RadioButton
+                        android:id="@+id/BidRadioButton2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:text="" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="수량"
+                android:textColor="#0000ff"/>
+
+                <EditText
+                    android:id="@+id/BIdCountitem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:gravity="left"
+                    android:hint="0"
+                    android:inputType="textPersonName|number" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:textSize="20sp"
+                android:text="개" />
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView29"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:text="(VAT 포함)개당 가격"
+                    android:textColor="#0000ff"/>
+
+                <EditText
+                    android:id="@+id/BIdPriceitem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:gravity="left"
+                    android:hint="0" />
+
+                <TextView
+                    android:id="@+id/textView30"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="left"
+                    android:textSize="20sp"
+                    android:text="원" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Sample_Bid_Notice"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView181"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="샘플 배송가능한 날짜"
+                        android:textColor="#0000ff"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/Samplebutton5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="NoticeDate"
+                        android:text="날짜 설정" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/SampleBidYearText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="년"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/SampleBidMonthText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="월"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/SampleBidDayText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="일"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#0000ff"
+                    android:textSize="20sp"
+                    android:text="샘플 제작 비용은 판매자가 전액 부담합니다."
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="배송가능한 날짜"
+                        android:textColor="#0000ff"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/button5"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="NoticeDate"
+                        android:text="날짜 설정" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/BidYearText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="right"
+                        android:text="년" />
+
+                    <TextView
+                        android:id="@+id/BidMonthText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="right"
+                        android:text="월" />
+
+                    <TextView
+                        android:id="@+id/BidDayText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="right"
+                        android:text="일" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="기타 사항 / 물건 특징"
+                    android:textColor="#0000ff"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/BId_Item_Character"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:ems="10"
+                    android:inputType="textMultiLine"
+                    android:hint="엔틱한 느낌, 밝은 색상의 나무, 목재는 느티나무, 높이는 50 ~ 60cm 등등 "
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/Notice_Register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="Notice_Register"
+                android:text="입찰하기" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

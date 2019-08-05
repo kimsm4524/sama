@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="#FFFFFF">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView11"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        app:srcCompat="@android:drawable/star_big_on" />
+
+                    <TextView
+                        android:id="@+id/Opponent_Star"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="4.5/5.0"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="거래정보 보러가기"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/Business_NumberText"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:text=" 사업자 등록 번호" />
+
+            <TextView
+                android:id="@+id/Opponent_Business_Number"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_launcher_rectangle_inaccount"
+                android:ems="10"
+                android:hint=" 000-00-00000"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/CompanyNameText"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:text=" 사업자 상호명" />
+
+            <TextView
+                android:id="@+id/Opponent_Company_Name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_launcher_rectangle_inaccount"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint=" ex) SAMA" />
+            <TextView
+                android:id="@+id/CompanyPlaceText"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:text=" 사업자 소재지" />
+
+            <TextView
+                android:id="@+id/Opponent_Company_Place"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_launcher_rectangle_inaccount"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint=" ex) 서울특별시 강남구 ..." />
+            <TextView
+                android:id="@+id/NameText"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:text=" 이름" />
+
+            <TextView
+                android:id="@+id/Opponent_Name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_launcher_rectangle_inaccount"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint=" ex) 박사마" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
