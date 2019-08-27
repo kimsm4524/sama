@@ -63,7 +63,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import static android.content.Intent.ACTION_GET_CONTENT;
-
+//test
 public class Account extends AppCompatActivity {
 
     ImageView AccountImage,BusinessCardImage;
