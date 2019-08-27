@@ -128,8 +128,6 @@ public class Trade extends AppCompatActivity
         Cancel[1] = findViewById(R.id.Bid_Picture_Delete1);
         Cancel[2] = findViewById(R.id.Bid_Picture_Delete2);
         Cancel[3] = findViewById(R.id.Bid_Picture_Delete3);
-        ListingAsync list = new ListingAsync();
-        list.execute();
         //if(거래가 진행중일 때)
         {
 
@@ -218,41 +216,8 @@ public class Trade extends AppCompatActivity
         }
 
         */
-        String[] biddercompanyname = {"삼성","LG","카카오","현대"};
-        String[] biddertradenum = {"10","1","99","1004"};
-        String[] bidderprice = {"100,000","200,000","1,000,000","50,000"};
-        String[] biddergrade = {"4.5","5.0","1.2","3.3"};
-
 
         //if(내가 올린 판매글일 경우)
-        {
-            ArrayList<BidderData> BidderData = new ArrayList<>();
-            for (int i = 0; i < 4; i++) {
-
-                BidderData bi = new BidderData();
-                bi.BidderCompanyName = biddercompanyname[i];
-                bi.BidderTradeCount = biddertradenum[i];
-                bi.BidderPrice = bidderprice[i];
-                bi.BidderGrade = biddergrade[i];
-                BidderData.add(bi);
-
-            }
-
-            Bidderlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {                    Intent in = new Intent(Trade.this, TradeBidderYet.class);
-                    startActivity(in);
-                }
-            });
-
-
-            BidderListAdapter bidderadapter = new BidderListAdapter(BidderData);
-            Bidderlv.setAdapter(bidderadapter);
-
-
-            setListViewHeightBasedOnChildren(Bidderlv);
-            //Yet.setVisibility(View.VISIBLE);
-        }
 
 
 
@@ -521,11 +486,6 @@ public class Trade extends AppCompatActivity
         startActivity(in);
     }
 
-    public void GoBasket(View view)
-    {
-        //장바구니에 담기
-    }
-
     public void Step(View view)
     {
 
@@ -602,103 +562,6 @@ public class Trade extends AppCompatActivity
 
     }
 
-    class ListingAsync extends AsyncTask<Void, String, Void> {
-        String count;
-        String day;
-        String content;
-        @Override
-        protected void onProgressUpdate(String... values) {
-            super.onProgressUpdate(values);
-            BidCount.setText(count);
-            Date.setText(day);
-            Condition.setText(content);
-            Log.i("picturenumzz",picturenum+"");
-            ListImageAsync listimage = new ListImageAsync();
-            listimage.execute();
-        }
 
-        protected Void doInBackground(Void... voids) {//user thread
-            // 70.12.244.133
-            String url = "http://52.79.255.160:8080/getpost.jsp";
-            Document xml = null;
-            String param = "?postnum="+postnum;
-            String u = url + param;
-            try {
-                xml = Jsoup.connect(u).get();//url에 접속해서 xml파일을 받아옴
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-            Elements result = xml.select("data");
-
-            for (Element e : result) {
-                count = e.select("quantity").text().toString();
-                day = e.select("shipping_date").text().toString();
-                content = e.select("contents").text().toString();
-                picturenum = Integer.parseInt(e.select("picturenum").text().toString());
-            }
-            publishProgress();
-            return null;
-        }
-    }
-    class ListImageAsync extends AsyncTask<File, Void, Void> {
-        @Override
-        protected void onProgressUpdate(Void... voids) {
-            super.onProgressUpdate();
-            VpAdapter adapter = new VpAdapter(getLayoutInflater(),picturenum,1,bmo);//숫자는 글의 사진의 수
-            pager.setAdapter(adapter);
-        }
-
-        protected Void doInBackground(File... values) {//user thread
-            fso = new File[picturenum];
-            bmo = new Bitmap[picturenum];
-            for (int i = 0; i < picturenum; i++) {
-                fso[i] = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/trade" + i);
-            }
-            CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
-                    getApplicationContext(),
-                    "ap-northeast-2:6fb92d56-fccc-4470-af83-af13c271a5b1", // 자격 증명 풀 ID
-                    Regions.AP_NORTHEAST_2 // 리전
-            );
-            s3 = new AmazonS3Client(credentialsProvider);
-            s3.setRegion(Region.getRegion(Regions.AP_NORTHEAST_2));
-            s3.setEndpoint("s3.ap-northeast-2.amazonaws.com");
-            for(int i=0;i<picturenum;i++) {
-                transferUtility = new TransferUtility(s3, getApplicationContext());
-                TransferObserver observer = transferUtility.download(
-                        "samaimage",
-                        "post/" + postnum + "/" + "image"+i+".png",
-                        fso[i]);
-                observer.setTransferListener(new TransferListener() {
-                    public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
-                        // update progress bar
-                        //progressBar.setProgress(bytesCurrent);
-                        Log.i("zzzzzzzzzzzz", "progress changed");
-
-                    }
-
-                    public void onStateChanged(int id, TransferState state) {
-                        Bitmap myBitmap[] = new Bitmap[picturenum];
-                        for(int i=0;i<picturenum;i++)
-                        {
-                            myBitmap[i]= BitmapFactory.decodeFile(fso[i].getAbsolutePath());
-                        }
-                        //Bitmap fin = rotateBitmap(myBitmap, 90);
-                        //portraitView.setImageBitmap(myBitmap);
-                        bmo = myBitmap;
-                        publishProgress();
-                    }
-
-                    public void onError(int id, Exception ex) {
-                        Log.e("ERROR", ex.getMessage(), ex);
-                        Log.i("ERROR", "189");
-                        Log.i("ERROR", "image is:");
-                        Log.i("ERROR", "iFile is:");
-                    }
-                });
-            }
-            publishProgress();
-            return null;
-        }
-    }
 }

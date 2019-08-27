@@ -7,9 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +25,16 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -38,13 +49,15 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TradeAlready  extends Trade
+public class TradeAlready  extends AppCompatActivity
 {
     ViewPager Buyer_Vp,Bidder_Vp;
     TextView Buyer_Count,Buyer_Date,Buyer_Character,Buyer_Address;
     TextView Bidder_Count,Bidder_Price,Bidder_Date,Bidder_Character;
     RadioButton Bidder_RadioButon;
     ArrayList<UserData> BuyerData;
+    TransferUtility transferUtility;
+
     ArrayList<UserData> BidderData;
 
     UserData Buyer,Bidder;
@@ -59,14 +72,20 @@ public class TradeAlready  extends Trade
     int picturenum,picturenuma;
     String postnum,Sellid,Postid;
 
-    Bitmap[] bmo,bmoa;
+    File[] fso;
+    Bitmap[] bmo,bmoa,bso;
+    String[] userid;
     AmazonS3 s3;
     private Loading l;
     @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade_already);
-
+        fso = new File[2];
+        fso[0] = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/buyerimage" );
+        fso[1] = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/sellerimage" );
+        bso = new Bitmap[2];
+        userid = new String[2];
 
         l = new Loading(TradeAlready.this);
 
@@ -75,6 +94,8 @@ public class TradeAlready  extends Trade
         Sellid = intent.getStringExtra("Sellid");
         Postid = intent.getStringExtra("Postid");
         Log.i("idzzzzzzzzzzzzzz",Sellid+Postid);
+        userid[0]=Postid;
+        userid[1]=Sellid;
 
         picturenum=0;
         picturenuma=0;
@@ -111,6 +132,8 @@ public class TradeAlready  extends Trade
 
         new UserpostAsync().execute();
         new UsersellAsync().execute();
+        new ListSellerImage().execute();
+
 
         ListingAsync list = new ListingAsync();
         list.execute();
@@ -148,6 +171,15 @@ public class TradeAlready  extends Trade
     public void GoAttacher(View view) {
         Intent in = new Intent(TradeAlready.this,PictureAttacher.class);
         in.putExtra("PictureCount",picturenum);
+        in.putExtra("postnum",postnum);
+        startActivity(in);
+    }
+    public void GoAttacher2(View view)
+    {
+        Intent in = new Intent(TradeAlready.this,PictureAttacherSell.class);
+        in.putExtra("PictureCount",picturenuma);
+        in.putExtra("postnum",postnum);
+        in.putExtra("sellid",Sellid);
         startActivity(in);
     }
 
@@ -491,20 +523,6 @@ public class TradeAlready  extends Trade
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
-            Buyerlv = (ListView) findViewById(R.id.Already_Buyer_Listview);
-            UserAdapter buyeradapter = new UserAdapter(BuyerData);
-            Buyerlv.setAdapter(buyeradapter);
-            Buyerlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent in = new Intent(TradeAlready.this, OpponentInfoPopup.class);
-                    in.putExtra("Id", Postid);
-
-                    startActivity(in);
-                }
-            });
-            setListViewHeightBasedOnChildren(Buyerlv);
-
         }
 
         protected Void doInBackground(Void... voids) {//user thread
@@ -519,8 +537,6 @@ public class TradeAlready  extends Trade
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            BuyerData = new ArrayList<>();
-
             Buyer = new UserData();
             Buyer.Id = Postid;
 
@@ -531,18 +547,49 @@ public class TradeAlready  extends Trade
                 Buyer.Phone = e.select("phonenumber").text().toString();
                 point = e.select("point").text().toString();
             }
-            BuyerData.add(Buyer);
             publishProgress();
             return null;
         }
     }
-    class UsersellAsync extends AsyncTask<Void, String, Void> {
+    class ListSellerImage extends AsyncTask<File, Void, Void> {
         @Override
-        protected void onProgressUpdate(String... values) {
-            super.onProgressUpdate(values);
+        protected void onProgressUpdate(Void... voids) {
+            super.onProgressUpdate();
+            ArrayList<UserData> BuyerData;
+            ArrayList<UserData> BidderData;
+
+            BuyerData = new ArrayList<>();
+
+
+            Buyer.Profile = bso[0];
+            BuyerData.add(Buyer);
+
+            BidderData = new ArrayList<>();
+
+            Bidder.Profile = bso[1];
+            BidderData.add(Bidder);
+
+
+
+            Buyerlv = (ListView) findViewById(R.id.Already_Buyer_Listview);
+            UserAdapter buyeradapter = new UserAdapter(BuyerData);
+            Buyerlv.setAdapter(buyeradapter);
+
             Bidderlv = (ListView) findViewById(R.id.Already_Bidder_Listview);
-            UserAdapter buyeradapter = new UserAdapter(BidderData);
-            Bidderlv.setAdapter(buyeradapter);
+            UserAdapter bidderadapter = new UserAdapter(BidderData);
+            Bidderlv.setAdapter(bidderadapter);
+            Buyerlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent in = new Intent(TradeAlready.this, OpponentInfoPopup.class);
+                    in.putExtra("Id", Postid);
+
+                    startActivity(in);
+                }
+            });
+
+
+
             Bidderlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -551,7 +598,67 @@ public class TradeAlready  extends Trade
                     startActivity(in);
                 }
             });
+            Log.i("picturenumzz",picturenum+"");
+            setListViewHeightBasedOnChildren(Buyerlv);
             setListViewHeightBasedOnChildren(Bidderlv);
+        }
+
+        protected Void doInBackground(File... values) {//user thread
+            CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
+                    getApplicationContext(),
+                    "ap-northeast-2:6fb92d56-fccc-4470-af83-af13c271a5b1", // 자격 증명 풀 ID
+                    Regions.AP_NORTHEAST_2 // 리전
+            );
+
+
+            s3 = new AmazonS3Client(credentialsProvider);
+            s3.setRegion(Region.getRegion(Regions.AP_NORTHEAST_2));
+            s3.setEndpoint("s3.ap-northeast-2.amazonaws.com");
+            for (int i = 0; i < 2; i++) {
+                transferUtility = new TransferUtility(s3, getApplicationContext());
+                TransferObserver observer = transferUtility.download(
+                        "samaimage",
+                        "user/"+userid[i]+"/"+"image.png",
+                        fso[i]);
+                observer.setTransferListener(new TransferListener() {
+                    public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+                        // update progress bar
+                        //progressBar.setProgress(bytesCurrent);
+                        Log.i("zzzzzzzzzzzz", "progress changed");
+
+                    }
+
+
+                    public void onStateChanged(int id, TransferState state) {
+                        Bitmap myBitmap[] = new Bitmap[2];
+                        for (int i = 0; i < 2; i++) {
+                            myBitmap[i] = BitmapFactory.decodeFile(fso[i].getAbsolutePath());
+                        }
+                        //Bitmap fin = rotateBitmap(myBitmap, 90);
+                        //portraitView.setImageBitmap(myBitmap);
+                        bso = myBitmap;
+                        publishProgress();
+                    }
+
+                    public void onError(int id, Exception ex) {
+                        Log.e("ERROR", ex.getMessage(), ex);
+                        Log.i("ERROR", "189");
+                        Log.i("ERROR", "image is:");
+                        Log.i("ERROR", "iFile is:");
+                    }
+                });
+            }
+            publishProgress();
+
+
+            return null;
+        }
+    }
+    class UsersellAsync extends AsyncTask<Void, String, Void> {
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+
         }
 
         protected Void doInBackground(Void... voids) {//user thread
@@ -566,7 +673,6 @@ public class TradeAlready  extends Trade
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            BidderData = new ArrayList<>();
 
             Bidder = new UserData();
             Bidder.Id = Sellid;
@@ -577,7 +683,6 @@ public class TradeAlready  extends Trade
                 Bidder.Name = e.select("name").text().toString();
                 Bidder.Phone = e.select("phonenumber").text().toString();
             }
-            BidderData.add(Bidder);
             publishProgress();
             return null;
         }

@@ -124,9 +124,10 @@ public class TradeSelect extends AppCompatActivity implements View.OnClickListen
 
     int picturenum,picturenuma;
     String postnum;
-    File f;
     TransferUtility transferUtility;
     File[] fso;
+    Bitmap[] bso;
+    String[] userid;
     Bitmap[] bmo,bmoa;
     Intent in;
     String OppositeId;
@@ -137,7 +138,11 @@ public class TradeSelect extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trade_select);
-
+        fso = new File[2];
+        fso[0] = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/buyerimage" );
+        fso[1] = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/sellerimage" );
+        bso = new Bitmap[2];
+        userid = new String[2];
 
 
         l = new Loading(TradeSelect.this);
@@ -146,7 +151,8 @@ public class TradeSelect extends AppCompatActivity implements View.OnClickListen
         postnum = intent.getStringExtra("postnum");
        Postid = intent.getStringExtra("Postid");
        Sellid = intent.getStringExtra("Sellid");
-
+        userid[0]=Postid;
+        userid[1]=Sellid;
         picturenum=0;
 
 
@@ -191,6 +197,7 @@ public class TradeSelect extends AppCompatActivity implements View.OnClickListen
         {
             button.setText("입찰 취소하기");
         }
+
 
         ArrayList<UserData> BuyerData;
         ArrayList<UserData> BidderData;
@@ -351,6 +358,7 @@ public class TradeSelect extends AppCompatActivity implements View.OnClickListen
         list.execute();
         ListauctionAsync auc = new ListauctionAsync();
         auc.execute();
+        new ListSellerImage().execute();
 
 
         initViews();
@@ -503,7 +511,7 @@ public class TradeSelect extends AppCompatActivity implements View.OnClickListen
     public void GoAttacher2(View view)
     {
         Intent in = new Intent(TradeSelect.this,PictureAttacherSell.class);
-        in.putExtra("PictureCount",picturenum);
+        in.putExtra("PictureCount",picturenuma);
         in.putExtra("postnum",postnum);
         in.putExtra("sellid",Sellid);
         startActivity(in);
@@ -631,28 +639,6 @@ public class TradeSelect extends AppCompatActivity implements View.OnClickListen
             Log.d("rkwkwha","Postid"+Postid);
             Log.d("rkwkwha","Sellid"+Sellid);
             Log.d("rkwkwha","Opposite"+OppositeId);
-
-            Buyerlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent in = new Intent(TradeSelect.this, OpponentInfoPopup.class);
-                    in.putExtra("Id", Postid);
-
-                    startActivity(in);
-                }
-            });
-
-
-
-            Bidderlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent in = new Intent(TradeSelect.this, OpponentInfoPopup.class);
-                    in.putExtra("Id", Sellid);
-                    startActivity(in);
-                }
-            });
-            Log.i("picturenumzz",picturenum+"");
             TradeSelect.ListImageAsync listimage = new TradeSelect.ListImageAsync();
             listimage.execute();
         }
@@ -778,7 +764,6 @@ public class TradeSelect extends AppCompatActivity implements View.OnClickListen
 
 
         protected Void doInBackground(File... values) {//user thread
-//            fso = new File[picturenum];
             bmoa = new Bitmap[picturenuma];
             for(int i=0;i<picturenuma;i++)
             {
@@ -812,6 +797,118 @@ public class TradeSelect extends AppCompatActivity implements View.OnClickListen
             }
             return null;
 
+        }
+    }
+    class ListSellerImage extends AsyncTask<File, Void, Void> {
+        @Override
+        protected void onProgressUpdate(Void... voids) {
+            super.onProgressUpdate();
+            ArrayList<UserData> BuyerData;
+            ArrayList<UserData> BidderData;
+
+            BuyerData = new ArrayList<>();
+
+            Buyer = new UserData();
+
+            Buyer.Id = Postid;
+
+            Buyer.Name = Postid;
+            Buyer.Phone = "거래진행시 공개";
+            Buyer.Profile = bso[0];
+            BuyerData.add(Buyer);
+
+            BidderData = new ArrayList<>();
+
+            Bidder = new UserData();
+            Bidder.Id = Sellid;
+            Bidder.Name = Sellid;
+            Bidder.Phone = "거래진행시 공개";
+            Bidder.Profile = bso[1];
+            BidderData.add(Bidder);
+
+
+
+            Buyerlv = (ListView) findViewById(R.id.Select_Buyer_Listview);
+            UserAdapter buyeradapter = new UserAdapter(BuyerData);
+            Buyerlv.setAdapter(buyeradapter);
+
+            Bidderlv = (ListView) findViewById(R.id.Select_Bidder_Listview);
+            UserAdapter bidderadapter = new UserAdapter(BidderData);
+            Bidderlv.setAdapter(bidderadapter);
+            Buyerlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent in = new Intent(TradeSelect.this, OpponentInfoPopup.class);
+                    in.putExtra("Id", Postid);
+
+                    startActivity(in);
+                }
+            });
+
+
+
+            Bidderlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent in = new Intent(TradeSelect.this, OpponentInfoPopup.class);
+                    in.putExtra("Id", Sellid);
+                    startActivity(in);
+                }
+            });
+            Log.i("picturenumzz",picturenum+"");
+            setListViewHeightBasedOnChildren(Buyerlv);
+            setListViewHeightBasedOnChildren(Bidderlv);
+        }
+
+        protected Void doInBackground(File... values) {//user thread
+            CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
+                    getApplicationContext(),
+                    "ap-northeast-2:6fb92d56-fccc-4470-af83-af13c271a5b1", // 자격 증명 풀 ID
+                    Regions.AP_NORTHEAST_2 // 리전
+            );
+
+
+            s3 = new AmazonS3Client(credentialsProvider);
+            s3.setRegion(Region.getRegion(Regions.AP_NORTHEAST_2));
+            s3.setEndpoint("s3.ap-northeast-2.amazonaws.com");
+            for (int i = 0; i < 2; i++) {
+                transferUtility = new TransferUtility(s3, getApplicationContext());
+                TransferObserver observer = transferUtility.download(
+                        "samaimage",
+                        "user/"+userid[i]+"/"+"image.png",
+                        fso[i]);
+                observer.setTransferListener(new TransferListener() {
+                    public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+                        // update progress bar
+                        //progressBar.setProgress(bytesCurrent);
+                        Log.i("zzzzzzzzzzzz", "progress changed");
+
+                    }
+
+
+                    public void onStateChanged(int id, TransferState state) {
+                        Bitmap myBitmap[] = new Bitmap[2];
+                        for (int i = 0; i < 2; i++) {
+                            myBitmap[i] = BitmapFactory.decodeFile(fso[i].getAbsolutePath());
+                        }
+                        //Bitmap fin = rotateBitmap(myBitmap, 90);
+                        //portraitView.setImageBitmap(myBitmap);
+                        bso = myBitmap;
+                        publishProgress();
+                    }
+
+                    public void onError(int id, Exception ex) {
+                        Log.e("ERROR", ex.getMessage(), ex);
+                        Log.i("ERROR", "189");
+                        Log.i("ERROR", "image is:");
+                        Log.i("ERROR", "iFile is:");
+                    }
+                });
+            }
+            publishProgress();
+
+
+            return null;
         }
     }
     public Bitmap loadBitmap(String url)

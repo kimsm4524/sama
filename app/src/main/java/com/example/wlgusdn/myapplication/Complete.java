@@ -87,6 +87,20 @@ public class     Complete  extends AppCompatActivity {
         finish();
 
     }
+    public void GoAttacher(View view) {
+        Intent in = new Intent(Complete.this,PictureAttacher.class);
+        in.putExtra("postnum",postnum);
+        in.putExtra("PictureCount",picturenum);
+        startActivity(in);
+    }
+    public void GoAttacher2(View view)
+    {
+        Intent in = new Intent(Complete.this,PictureAttacherSell.class);
+        in.putExtra("PictureCount",picturenuma);
+        in.putExtra("postnum",postnum);
+        in.putExtra("sellid",seller);
+        startActivity(in);
+    }
     class ListingAsync extends AsyncTask<Void, String, Void> {
         String count;
         String date;
@@ -204,7 +218,7 @@ public class     Complete  extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(Void... voids) {
             super.onProgressUpdate();
-            VpAdapter adapter = new VpAdapter(getLayoutInflater(),picturenuma,3,bmoa);//숫자는 글의 사진의 수
+            VpAdapter adapter = new VpAdapter(getLayoutInflater(),picturenuma,1,bmoa);//숫자는 글의 사진의 수
             Complete_ViewPager1.setAdapter(adapter);
         }
 

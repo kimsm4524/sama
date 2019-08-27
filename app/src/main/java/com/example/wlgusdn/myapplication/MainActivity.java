@@ -505,9 +505,8 @@ public class MainActivity extends AppCompatActivity
 
             Log.i("zzzzzzz",point+"/"+name);
             TextView namet = (TextView)header_view.findViewById(R.id.Nav_id);
-            TextView pointt = (TextView)header_view.findViewById(R.id.Nav_Point);
             namet.setText(name);
-            pointt.setText(point);
+
 
 
         }
