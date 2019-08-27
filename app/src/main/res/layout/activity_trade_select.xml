@@ -72,8 +72,7 @@
                     <android.support.v4.view.ViewPager
                         android:id="@+id/Select_Buyer_ViewPager"
                         android:layout_width="match_parent"
-                        android:layout_height="384dp"
-                        android:onClick="GoAttacher" />
+                        android:layout_height="384dp" />
 
                     <TextView
                         android:id="@+id/Select_Buyer_Count"

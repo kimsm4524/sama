@@ -43,7 +43,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="2"
-                        app:srcCompat="@android:drawable/star_big_on" />
+                        app:srcCompat="@drawable/star" />
 
                     <TextView
                         android:id="@+id/Opponent_Star"
@@ -55,15 +55,6 @@
                         android:gravity="center"/>
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textView27"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="거래정보 보러가기"
-                    android:textSize="20sp"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/Business_NumberText"

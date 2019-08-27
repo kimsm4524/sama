@@ -72,6 +72,20 @@
                 android:layout_marginTop="10dp"
                 android:text="수량 : 110 개"
                 android:textSize="20sp" />
+            <TextView
+                android:id="@+id/Complete_Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/Complete_Date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/Complete_Condition"
@@ -80,6 +94,7 @@
                 android:layout_marginTop="10dp"
                 android:text="원하는 조건 : 엔틱한 느낌, 밝은 색상의 나무, 목재는 느티나무, 높이는 50 ~ 60cm 등등"
                 android:textSize="20sp" />
+
 
 
             <TextView
@@ -141,7 +156,20 @@
                 android:layout_marginTop="10dp"
                 android:text="수량 : 110 개"
                 android:textSize="20sp" />
-
+            <TextView
+                android:id="@+id/Complete_Address1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/Complete_Date1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/Complete_Condition1"
                 android:layout_width="match_parent"

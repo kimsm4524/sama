@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.icu.text.SimpleDateFormat;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -54,6 +55,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Calendar;
+import java.util.Date;
 
 import static android.content.Intent.ACTION_GET_CONTENT;
 
@@ -69,7 +72,7 @@ public class BuyNotice extends AppCompatActivity {
     String Pickeditem;
     TextView Year,Month,Day;
     TextView Address;
-    EditText Countitem,Title;
+    EditText Countitem,Title,ExtraAddress;
     LinearLayout AddressLayout;
     FrameLayout[] fl;
     ImageButton[] Cancel;
@@ -115,6 +118,7 @@ public class BuyNotice extends AppCompatActivity {
         r6 = findViewById(R.id.radioButton6);
         MyAddress=findViewById(R.id.Buy_MyAddress);
         NewAddress = findViewById(R.id.Buy_NewAddress);
+        ExtraAddress = findViewById(R.id.Buy_ExtraAddress);
         Etc = findViewById(R.id.Etc);
         Year = findViewById(R.id.YearText);
         Month = findViewById(R.id.MonthText);
@@ -134,6 +138,8 @@ public class BuyNotice extends AppCompatActivity {
         Cancel[3] = findViewById(R.id.Picture_Delete3);
 
         fs=new File[4];
+
+
         for(int i = 0 ; i<4;i++)
         {
             fs[i]=  new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/resize"+i);
@@ -285,13 +291,14 @@ public class BuyNotice extends AppCompatActivity {
                         cursor.moveToFirst();
 
                         f = new File(cursor.getString(column_index));
+                        fs[count] = f;
 
                     } finally {
                         if (cursor != null) {
                             cursor.close();
                         }
                     }
-                    ExifInterface exif = new ExifInterface(f.getPath());
+                    ExifInterface exif = new ExifInterface(fs[count].getPath());
 
                     int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
 
@@ -308,8 +315,13 @@ public class BuyNotice extends AppCompatActivity {
                     Matrix mat = new Matrix();
                     mat.postRotate(angle);
 
-                    Bitmap bmp = BitmapFactory.decodeStream(new FileInputStream(f), null, null);
+                    Bitmap bmp = BitmapFactory.decodeStream(new FileInputStream(fs[count]), null, null);
                     correctBmp = Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), mat, true);
+
+
+
+
+
                     int height = correctBmp.getHeight();
                     int width = correctBmp.getWidth();
 
@@ -327,8 +339,8 @@ public class BuyNotice extends AppCompatActivity {
                     if(count-1>=0)
                         Cancel[count-1].setVisibility(View.GONE);
 
-                    saveBitmapAsFile(resized,Environment.getExternalStorageDirectory().getAbsolutePath() + "/resize"+count);
-                    iv[count].setImageBitmap(img[count]);
+                    saveBitmapAsFile(img[count],Environment.getExternalStorageDirectory().getAbsolutePath() + "/resize"+count);
+                    iv[count].setImageBitmap(correctBmp);
 
 
                     Cancel[count].setVisibility(View.VISIBLE);
@@ -478,6 +490,23 @@ public class BuyNotice extends AppCompatActivity {
 
     public void NoticeDate(View view)
     {
+        Date today = new Date();
+        String strdate= null;
+
+        SimpleDateFormat format1  = new SimpleDateFormat();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            format1 = new SimpleDateFormat("yyyy-MM-dd");
+
+            strdate = format1.format(today);
+
+
+        }
+
+
+
+
+
 
 
         DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
@@ -490,7 +519,7 @@ public class BuyNotice extends AppCompatActivity {
 
             }
         }
-                , 2019, 0, 1);
+                ,  Integer.parseInt(strdate.split("-")[0]), Integer.parseInt(strdate.split("-")[1])-1, Integer.parseInt(strdate.split("-")[2]));
 
 
 
@@ -599,7 +628,7 @@ public class BuyNotice extends AppCompatActivity {
             String url = "http://52.79.255.160:8080/posting.jsp";
             //제목 -> Title.getText().toString();
             String param = "?id="+id+"&contents="+Contents.getText().toString()+"&picture="+count+"&quantity="+Countitem.getText().toString()
-                    +"&address="+Address.getText().toString()+"&s_date="+Year.getText().toString()+" "+Month.getText().toString()+" "+Day.getText().toString()
+                    +"&address="+Address.getText().toString()+ExtraAddress.getText().toString()+"&s_date="+Year.getText().toString()+" "+Month.getText().toString()+" "+Day.getText().toString()
                     +"&categori="+categori+"&categori2="+Pickeditem+"&title="+Title.getText().toString();
             Document xml = null;
             String u = url +param;

@@ -240,8 +240,7 @@ public class Trade extends AppCompatActivity
 
             Bidderlv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent in = new Intent(Trade.this, TradeBidderYet.class);
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {                    Intent in = new Intent(Trade.this, TradeBidderYet.class);
                     startActivity(in);
                 }
             });
@@ -500,12 +499,6 @@ public class Trade extends AppCompatActivity
     {
         Intent in = new Intent(Trade.this, ReviewPopup.class);
         startActivity(in);
-    }
-    public void GoOpponentPopup(View view)
-    {
-        Intent in = new Intent(Trade.this,OpponentInfoPopup.class);
-        startActivity(in);
-
     }
 
     @SuppressLint("NewApi")

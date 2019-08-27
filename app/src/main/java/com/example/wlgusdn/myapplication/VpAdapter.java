@@ -159,6 +159,40 @@ public class VpAdapter extends PagerAdapter {
 
 
             //Image가 세팅된 View를 리턴
+        }else if(Type==3) {
+
+            //새로운 View 객체를 Layoutinflater를 이용해서 생성
+
+            //만들어질 View의 설계는 res폴더>>layout폴더>>viewpater_childview.xml 레이아웃 파일 사용
+
+            view = inflater.inflate(R.layout.vp_child2, null);
+
+
+            //만들어진 View안에 있는 ImageView 객체 참조
+
+            //위에서 inflated 되어 만들어진 view로부터 findViewById()를 해야 하는 것에 주의.
+
+            ImageView img = (ImageView) view.findViewById(R.id.vp_child2);
+
+
+            //ImageView에 현재 position 번째에 해당하는 이미지를 보여주기 위한 작업
+
+            //현재 position에 해당하는 이미지를 setting
+
+
+            //여기서 배열의 이미지 저장
+            if (bmi != null) {
+                img.setImageBitmap(bmi[index++]);
+            } else
+                img.setImageResource(R.drawable.logo);
+
+
+            //ViewPager에 만들어 낸 View 추가
+
+            container.addView(view);
+
+
+            //Image가 세팅된 View를 리턴
         }
         return view;
 

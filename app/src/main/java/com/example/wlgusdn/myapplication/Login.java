@@ -39,6 +39,7 @@ public class Login extends AppCompatActivity {
     String idtext;
     UserData1 userData;
     public SharedPreferences sf;
+    public SharedPreferences.Editor editor;
     private FirebaseDatabase mFirebaseDatabase;
 
 
@@ -55,6 +56,7 @@ public class Login extends AppCompatActivity {
         mDatabaseReference = mFirebaseDatabase.getReference();
 
         sf = getSharedPreferences(Login,0);
+        editor = sf.edit();
 
 
        /* if(sf.getString("id","")!="")
@@ -136,6 +138,19 @@ public class Login extends AppCompatActivity {
                         userData = dataSnapshot.getValue(UserData1.class);
 
                         userData.fcmToken = FirebaseInstanceId.getInstance().getToken();
+
+                        if(dataSnapshot.child("TradeAlarm").getValue(true).toString().equals("true"))
+                        {
+                            userData.TradeAlarm="true";
+                            editor.putString("TradeAlarm","true");
+                        }
+                        else
+                        {
+                            userData.TradeAlarm="false";
+                            editor.putString("TradeAlarm","false");
+                        }
+
+                        editor.commit();
 
                         mDatabaseReference.child("users").child(userData.userEmailID).setValue(userData);
 

@@ -156,7 +156,6 @@ public class ChatAdapter extends ArrayAdapter<ChatData> {
     public int getItemViewType(int position) {
 
         String email = getItem(position).userName;
-
         if(email!=null) {
             if (MainActivity.Myname.equals(email)) {
 

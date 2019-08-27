@@ -136,7 +136,7 @@ public class Account_Setting extends AppCompatActivity
     public void OpenMap(View view)
     {
 
-        Intent in = new Intent(Account_Setting.this, DaumWebView.class);
+        Intent in = new Intent(Account_Setting.this, WebViewActivity.class);
         startActivityForResult(in, 4);
 
     }

@@ -5,9 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -61,14 +64,17 @@ public class CompleteListAdapter extends BaseAdapter
 
         //구매글들에 대한 정보들
 
+        TextView CompleteDataTitle =  convertView.findViewById(R.id.CompleteDataTitle);
         TextView CompleteDataCount =  convertView.findViewById(R.id.CompleteDataCount);
-        TextView CompleteDataPrice =  convertView.findViewById(R.id.CompleteDataStar);
-        TextView CompleteDataDate = convertView.findViewById(R.id.CompleteDataDate);
-
+        TextView CompleteDataStar = convertView.findViewById(R.id.CompleteDataStar);
+        ImageView CompleteImage = convertView.findViewById(R.id.CompleteImage);
 
         CompleteDataCount.setText(MyCompleteData.get(position).Count);
-        CompleteDataPrice.setText(MyCompleteData.get(position).Star);
-        CompleteDataDate.setText(MyCompleteData.get(position).Date);
+        CompleteDataTitle.setText(MyCompleteData.get(position).Title);
+        CompleteDataStar.setText(MyCompleteData.get(position).Star);
+        Picasso.get().load(MyCompleteData.get(position).url).into(CompleteImage);
+
+
         return convertView;
     }
     public void goTrade()

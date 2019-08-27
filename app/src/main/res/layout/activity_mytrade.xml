@@ -64,7 +64,7 @@
                 android:textSize="20sp" />
 
             <ListView
-                android:id="@+id/BuyCompleteList"
+                android:id="@+id/TradingList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -74,29 +74,15 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/ic_launcher_rectangle_inaccount"
-                android:text="구매 완료된 글"
+                android:text="거래 완료된 글"
                 android:textSize="20sp" />
 
             <ListView
-                android:id="@+id/TradingList"
+                android:id="@+id/CompleteList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
 
-            <TextView
-                android:id="@+id/textView37"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/ic_launcher_rectangle_inaccount"
-                android:text="판매 완료된 글"
-                android:textSize="20sp" />
-
-            <ListView
-                android:id="@+id/SellCompleteList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-            </ListView>
         </LinearLayout>
     </ScrollView>
 

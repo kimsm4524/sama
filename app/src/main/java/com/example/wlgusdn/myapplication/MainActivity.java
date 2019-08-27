@@ -174,10 +174,44 @@ public class MainActivity extends AppCompatActivity
                 UserData1 userData = new UserData1();
                 userData.userEmailID = sf.getString("id","");
                 userData.fcmToken = "null";
+
+                Boolean bl;
+
+                if(sf.getString("SamaAlarm","").equals("true"))
+                {
+                    bl=true;
+                }
+                else
+                {
+                    bl=false;
+                }
+
+
+                if(sf.getString("TradeAlarm","").equals("true"))
+                {
+                    userData.TradeAlarm="true";
+                }
+                else
+                {
+                    userData.TradeAlarm="false";
+                }
+
                 mDatabaseReference.child("users").child(userData.userEmailID).setValue(userData);
 
                 final SharedPreferences.Editor editor = sf.edit();
                 editor.clear();
+
+                if(bl==true)
+                {
+                    editor.putString("SamaAlarm","true");
+                }
+                else
+                {
+                    editor.putString("SamaAlarm","false");
+
+                }
+
+
                 editor.commit();
 
 
@@ -265,12 +299,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+
         backPressCloseHandler.onBackPressed();
     }
 
@@ -323,7 +352,7 @@ public class MainActivity extends AppCompatActivity
         } else if (eid == R.id.nav_Alarm_Setting) {
             if(sf.contains("id"))
             {
-            Intent intent = new Intent(MainActivity.this, ArlamPopup.class);
+            Intent intent = new Intent(MainActivity.this, AlramPopup.class);
             intent.putExtra("id",id);
             startActivity(intent);
             }
@@ -467,6 +496,7 @@ public class MainActivity extends AppCompatActivity
     class UserAsync extends AsyncTask<Void, String, Void> {
         String name;
         String point;
+        SharedPreferences.Editor editor;
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
@@ -484,6 +514,7 @@ public class MainActivity extends AppCompatActivity
 
         protected Void doInBackground(Void... voids) {//user thread
             // 70.12.244.133
+            editor = sf.edit();
             String url = "http://52.79.255.160:8080/userinfo.jsp";
             String param = "?id="+id;
             Document xml = null;
@@ -499,7 +530,14 @@ public class MainActivity extends AppCompatActivity
 
             for (Element e : result) {
                 name = e.select("name").text().toString();
-                point = e.select("point").text().toString();            }
+                point = e.select("point").text().toString();
+                editor.putString("name",e.select("name").text().toString());
+                editor.putString("phonenumber",e.select("phonenumber").text().toString());
+                editor.putString("address",e.select("address").text().toString());
+                editor.putString("business_num",e.select("business_num").text().toString());
+                editor.putString("business_add",e.select("business_add").text().toString());
+            }
+            editor.commit();
             Log.i("zzzzzzzzzzzzz",name);
             publishProgress();
             return null;
@@ -599,6 +637,7 @@ public class MainActivity extends AppCompatActivity
                     {
                         i = new Intent(MainActivity.this, TradeBidderYet.class);
                     }
+
                     else
                     {
                         i = new Intent(MainActivity.this, TradeBuyerYet.class);

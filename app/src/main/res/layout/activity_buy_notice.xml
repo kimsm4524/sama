@@ -405,6 +405,14 @@
                     android:gravity="center"/>
 
 
+            <EditText
+                android:id="@+id/Buy_ExtraAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="추가주소"
+                android:inputType="textPersonName" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"

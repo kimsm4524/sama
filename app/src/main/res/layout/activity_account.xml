@@ -226,6 +226,14 @@
                 android:background="@drawable/ic_launcher_rectangle_inaccount"
                 android:textSize="15sp"/>
 
+            <EditText
+                android:id="@+id/CompanyExtraAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="추가주소"
+                android:inputType="textPersonName" />
+
             <TextView
                 android:id="@+id/NameText"
                 android:layout_width="match_parent"
@@ -360,6 +368,14 @@
                 android:text="위에서 선택한 주소"
                 android:background="@drawable/ic_launcher_rectangle_inaccount"
                 android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/ExtraAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="추가주소"
+                android:inputType="textPersonName" />
 
             <Button
                 android:id="@+id/Register_Account"

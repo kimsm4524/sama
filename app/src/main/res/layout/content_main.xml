@@ -59,14 +59,16 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:text="경매 보기"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:visibility="gone" />
 
             <HorizontalScrollView
                 android:id="@+id/Main_Scv"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
+                android:fillViewport="true"
                 android:paddingTop="10dp"
-                android:fillViewport="true">
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="wrap_content"

@@ -20,6 +20,13 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/SellDataTitle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="제목 : "
+            android:textSize="20sp" />
+        <TextView
             android:id="@+id/SellDataCount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,14 +41,6 @@
             android:text="개당 가격 : "
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/SellDataDate"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:inputType="textMultiLine"
-            android:text="희망배송일 :  \n2019년 10월 10일"
-            android:textSize="20sp" />
 
     </LinearLayout>
 </LinearLayout>

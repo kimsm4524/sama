@@ -110,4 +110,9 @@ public class PictureAttacher  extends AppCompatActivity
         return bm;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

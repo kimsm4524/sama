@@ -21,24 +21,23 @@
         >
 
         <TextView
-            android:id="@+id/CompleteDataCount"
+            android:id="@+id/CompleteDataTitle"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="수량 : "
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"/>
-
+            android:layout_marginTop="10dp"
+            android:text="제목 : "
+            android:textSize="20sp" />
 
 
         <TextView
-            android:id="@+id/CompleteDataDate"
+            android:id="@+id/CompleteDataCount"
             android:layout_width="200dp"
             android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:text="거래완료일 : "
             android:inputType="textMultiLine"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"/>
+            android:text="수량 : "
+            android:textSize="20sp" />
 
     </LinearLayout>
 

@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
-public class ArlamPopup extends Activity {
+public class AlramPopup extends Activity {
 
     ToggleButton tb1,tb2;
     private FirebaseDatabase mFirebaseDatabase;
@@ -51,24 +51,38 @@ public class ArlamPopup extends Activity {
                 if(sf.getString("SamaAlarm","").equals("true"))
                 {
                     tb1.setChecked(true);
-                    firebaseanalytics.setUserProperty("SamaAlarm","true");
                 }
                 else
                 {
                     tb1.setChecked(false);
-                    firebaseanalytics.setUserProperty("SamaAlarm","false");
                 }
 
-                if(sf.getString("TradeAlarm","").equals("true"))
-                {
-                    tb2.setChecked(true);
-                    firebaseanalytics.setUserProperty("TradeAlarm","true");
-                }
-                else
-                {
-                    tb2.setChecked(false);
-                    firebaseanalytics.setUserProperty("TradeAlarm","false");
-                }
+                mFirebaseDatabase.getReference("users").child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        userData=dataSnapshot.getValue(UserData1.class);
+
+                        if(userData.TradeAlarm.equals("true"))
+                        {
+                            tb2.setChecked(true);
+
+
+                        }
+                        else
+                        {
+                            tb2.setChecked(false);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
 
 
 
@@ -108,15 +122,18 @@ public class ArlamPopup extends Activity {
                 if(isChecked==true)
                 {
 
+                    userData.TradeAlarm="true";
                     editor.putString("TradeAlarm","true");
-                    firebaseanalytics.setUserProperty("TradeAlarm","true");
+                    mFirebaseDatabase.getReference("users").child(id).setValue(userData);
 
                 }
                 else
                 {
-                    editor.putString("TradeAlarm","false");
-                    firebaseanalytics.setUserProperty("TradeAlarm","false");
 
+                    userData.TradeAlarm="false";
+
+                    editor.putString("TradeAlarm","false");
+                    mFirebaseDatabase.getReference("users").child(id).setValue(userData);
 
                 }
                 editor.commit();

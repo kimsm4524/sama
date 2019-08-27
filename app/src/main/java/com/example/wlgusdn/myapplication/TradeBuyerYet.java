@@ -3,9 +3,12 @@ package com.example.wlgusdn.myapplication;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.icu.text.SimpleDateFormat;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -44,20 +47,30 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.time.Month;
+import java.time.Year;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TradeBuyerYet extends AppCompatActivity
 {
+    private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
     ViewPager Buyer_Vp;
     TextView Buyer_Count,Buyer_Date,Buyer_Character,Buyer_Address,Buyer_title,Buyer_hit,Buyer_Address1;
     TextView MoYear,MoMonth,MoDay;
     ListView Bidderlv = null;
     String Buyer_Date1;
+    SharedPreferences sf;
+    String myid;
 
-    EditText Buyer_Count1,Buyer_Character1,Buyer_title1;
+
+    EditText Buyer_Count1,Buyer_Character1,Buyer_title1,Buyer_Extra_Address1;
     Button button;
+
     LinearLayout modify;
     int picturenum;
     String postnum;
@@ -71,6 +84,8 @@ public class TradeBuyerYet extends AppCompatActivity
     Bitmap[] bseller;
     ArrayList<BidderData> BData;
     ArrayList<BidderData> BData1;
+    String tit,count,address,day,content;
+    String mod_title,mod_count,mod_address,mod_date,mod_content;
 
 
     @Override
@@ -79,7 +94,8 @@ public class TradeBuyerYet extends AppCompatActivity
         setContentView(R.layout.activity_trade_buyer_yet);
 
 
-
+        sf = getSharedPreferences("login", 0);
+        myid = sf.getString("id","");
         picturenum=0;
 
         Bidderlv = findViewById(R.id.Yet_Bidder_ListView);
@@ -100,6 +116,7 @@ public class TradeBuyerYet extends AppCompatActivity
         Buyer_Address1 = findViewById(R.id.Yet_Buyer_Address1);
         Buyer_title1 = findViewById(R.id.Yet_Buyer_Title1);
         Buyer_Character1 = findViewById(R.id.Yet_Buyer_Character1);
+        Buyer_Extra_Address1 = findViewById(R.id.Yet_Buyer_Extra_Address);
 
         modify = findViewById(R.id.Buyer_Linear_Modify);
         modify.setVisibility(View.GONE);
@@ -156,6 +173,25 @@ public class TradeBuyerYet extends AppCompatActivity
     {
 
 
+        Date today = new Date();
+        String strdate= null;
+
+        SimpleDateFormat format1  = new SimpleDateFormat();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            format1 = new SimpleDateFormat("yyyy-MM-dd");
+
+            strdate = format1.format(today);
+
+
+        }
+
+
+
+
+
+
+
         DatePickerDialog dialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
@@ -163,9 +199,10 @@ public class TradeBuyerYet extends AppCompatActivity
                 MoYear.setText(String.valueOf(year)+"년");
                 MoMonth.setText(String.valueOf(month+1)+"월");
                 MoDay.setText(String.valueOf(dayOfMonth)+"일");
+
             }
         }
-                , 2019, 0, 1);
+                ,  Integer.parseInt(strdate.split("-")[0]), Integer.parseInt(strdate.split("-")[1])-1, Integer.parseInt(strdate.split("-")[2]));
 
 
 
@@ -175,13 +212,16 @@ public class TradeBuyerYet extends AppCompatActivity
     }
         public void Modify(View view)
         {
+            String[] date = day.split("\\s");
 
             modify.setVisibility(View.VISIBLE);
-
-
-
-
-
+            Buyer_Address1.setText(address);
+            Buyer_title1.setText(tit);
+            Buyer_Character1.setText(content);
+            Buyer_Count1.setText(count);
+            MoYear.setText(date[0]);
+            MoMonth.setText(date[1]);
+            MoDay.setText(date[2]);
         }
 
 
@@ -199,8 +239,7 @@ public class TradeBuyerYet extends AppCompatActivity
             {
 
                 Toast.makeText(TradeBuyerYet.this, "'확인'버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
-                //구매글, 글에 대한 입찰글 삭제
-
+                new deleteAsync().execute();
                 finish();
 
             }
@@ -239,23 +278,20 @@ public class TradeBuyerYet extends AppCompatActivity
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 4) {
-            if (resultCode == RESULT_OK) {
+        if(requestCode==SEARCH_ADDRESS_ACTIVITY)
+        {
+            if(resultCode == RESULT_OK){
 
-                try {
-                   Buyer_Address1.setText(data.getStringExtra("Adress"));
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
+                String st = data.getExtras().getString("data");
+                if (st != null)
+                    Buyer_Address1.setText(st);
             }
         }
     }
     public void OpenMap()
     {
-            Intent in = new Intent(TradeBuyerYet.this, DaumWebView.class);
-            startActivityForResult(in, 4);
+            Intent in = new Intent(TradeBuyerYet.this, WebViewActivity.class);
+            startActivityForResult(in, SEARCH_ADDRESS_ACTIVITY);
 
 
 
@@ -263,62 +299,55 @@ public class TradeBuyerYet extends AppCompatActivity
 
     public void Modify_Complete(View view)
     {
-
-        if(Buyer_title.getText().equals(Buyer_title1.getText()))
-        {
-            Buyer_title.getText();
-        }
-        else
-        {
-
-            Buyer_title1.getText();
-        }
-
-        if(Buyer_Count.getText().equals(Buyer_Count1.getText()))
-        {
-            Buyer_Count.getText();
-        }
-        else
-        {
-
-            Buyer_Count1.getText();
+        new ModifyAsync().execute();
+    }
+    class ModifyAsync extends AsyncTask<Void, String, Void>
+    {
+        @Override
+        protected void onProgressUpdate(String... values) {
+            if(values[0].equals("글쓰기 성공"))
+            {
+                Toast.makeText(TradeBuyerYet.this, "수정완료", Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                Toast.makeText(TradeBuyerYet.this, "수정실패", Toast.LENGTH_LONG).show();
+            }
+            super.onProgressUpdate(values);
         }
 
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String url = "http://52.79.255.160:8080/update.jsp";
+            //제목 -> Title.getText().toString();
+            String param = null;
+            param = "?postnum="+postnum+"&contents="+Buyer_Character1.getText().toString()+"&quantity="+Buyer_Count1.getText().toString()
+                        +"&address="+Buyer_Address1.getText().toString()+Buyer_Extra_Address1.getText().toString()+"&s_date="+ MoYear.getText().toString()+" "+ MoMonth.getText().toString()+" "+MoDay.getText().toString()
+                            +"&title="+Buyer_title1.getText().toString();
 
-        if(Buyer_Address.getText().equals(Buyer_Address1.getText()))
-        {
-            Buyer_Address.getText();
+            Document xml = null;
+            String u = url +param;
+            Log.i("zzzzzzzzzzzz",u);
+            try {
+                xml = Jsoup.connect(u).get();//url에 접속해서 xml파일을 받아옴
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Elements result = xml.select("data");
+
+            for (Element e : result) {
+                if (e.select("result").text().equals("true"))
+                    publishProgress("글쓰기 성공",e.select("postnum").text());
+                else
+                    publishProgress("글쓰기 실패");
+            }
+            return null;
         }
-        else
-        {
-
-            Buyer_Address1.getText();
-        }
-
-        if(Buyer_Character.getText().equals(Buyer_Character1.getText()))
-        {
-            Buyer_Character.getText();
-        }
-        else
-        {
-
-            Buyer_Character1.getText();
-        }
-
-        MoYear.getText();
-        MoMonth.getText();
-        MoDay.getText();
-
-        Toast.makeText(TradeBuyerYet.this,"수정완료",Toast.LENGTH_SHORT).show();
-
     }
 
 
     class ListingAsync extends AsyncTask<Void, String, Void> {
-        String count;
-        String day;
-        String content;
-        String tit;
         String hits;
         @Override
         protected void onProgressUpdate(String... values) {
@@ -328,6 +357,7 @@ public class TradeBuyerYet extends AppCompatActivity
             Buyer_Character.setText("세부사항 : "+content);
             Buyer_title.setText("제목 : "+tit);
             Buyer_hit.setText("조회수 : "+hits);
+            Buyer_Address.setText("주소 : "+address);
             Log.i("picturenumzz",picturenum+"");
             TradeBuyerYet.ListImageAsync listimage = new TradeBuyerYet.ListImageAsync();
             listimage.execute();
@@ -337,7 +367,7 @@ public class TradeBuyerYet extends AppCompatActivity
             // 70.12.244.133
             String url = "http://52.79.255.160:8080/getpost.jsp";
             Document xml = null;
-            String param = "?postnum="+postnum;
+            String param = "?postnum="+postnum+"&id=";
             String u = url + param;
             try {
                 xml = Jsoup.connect(u).get();//url에 접속해서 xml파일을 받아옴
@@ -352,6 +382,7 @@ public class TradeBuyerYet extends AppCompatActivity
                 day = e.select("shipping_date").text().toString();
                 content = e.select("contents").text().toString();
                 picturenum = Integer.parseInt(e.select("picturenum").text().toString());
+                address = e.select("address").text().toString();
                 tit=e.select("title").text().toString();
                 hits =e.select("hit").text().toString();;
             }
@@ -434,7 +465,7 @@ public class TradeBuyerYet extends AppCompatActivity
 
 
                     Intent in = new Intent(TradeBuyerYet.this, TradeSelect.class);
-                    in.putExtra("Postid",MainActivity.Myname);
+                    in.putExtra("Postid",myid);
                     Log.d("chcheck11",BData1.get(position).id);
                     in.putExtra("Sellid",BData1.get(position).id);
                     in.putExtra("postnum",postnum);
@@ -558,5 +589,22 @@ public class TradeBuyerYet extends AppCompatActivity
             }
         }
         return bm;
+    }
+    class deleteAsync extends AsyncTask<Void, String, Void> {
+        protected Void doInBackground(Void... voids) {//user thread
+            // 70.12.244.133
+            String url;
+            url = "http://52.79.255.160:8080/delete.jsp";
+            Document xml = null;
+            String param = "?postnum=" + postnum;
+            String u = url + param;
+            try {
+                xml = Jsoup.connect(u).get();//url에 접속해서 xml파일을 받아옴
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+
+        }
     }
 }

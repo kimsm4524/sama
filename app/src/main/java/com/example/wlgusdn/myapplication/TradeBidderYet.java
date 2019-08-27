@@ -96,8 +96,10 @@ public class TradeBidderYet extends AppCompatActivity
     String postnum;
     String postid;
     String postToken;
-    String postMessageOnOff;
-    String postManagerOnOff;
+    String postAlarm;
+
+    UserData1 user;
+
     File[] fs;
     String Login = "login";
     String id;
@@ -301,13 +303,14 @@ public class TradeBidderYet extends AppCompatActivity
                         cursor.moveToFirst();
 
                         f = new File(cursor.getString(column_index));
+                        fs[count] = f;
 
                     } finally {
                         if (cursor != null) {
                             cursor.close();
                         }
                     }
-                    ExifInterface exif = new ExifInterface(f.getPath());
+                    ExifInterface exif = new ExifInterface(fs[count].getPath());
 
                     int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
 
@@ -324,8 +327,13 @@ public class TradeBidderYet extends AppCompatActivity
                     Matrix mat = new Matrix();
                     mat.postRotate(angle);
 
-                    Bitmap bmp = BitmapFactory.decodeStream(new FileInputStream(f), null, null);
+                    Bitmap bmp = BitmapFactory.decodeStream(new FileInputStream(fs[count]), null, null);
                     correctBmp = Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), mat, true);
+
+
+
+
+
                     int height = correctBmp.getHeight();
                     int width = correctBmp.getWidth();
 
@@ -343,8 +351,8 @@ public class TradeBidderYet extends AppCompatActivity
                     if(count-1>=0)
                         Cancel[count-1].setVisibility(View.GONE);
 
-                    saveBitmapAsFile(resized,Environment.getExternalStorageDirectory().getAbsolutePath() + "/resize"+count);
-                    iv[count].setImageBitmap(img[count]);
+                    saveBitmapAsFile(img[count],Environment.getExternalStorageDirectory().getAbsolutePath() + "/resize"+count);
+                    iv[count].setImageBitmap(correctBmp);
 
 
                     Cancel[count].setVisibility(View.VISIBLE);
@@ -412,19 +420,18 @@ public class TradeBidderYet extends AppCompatActivity
             custom = 1;
         }
 
-        if(postMessageOnOff.equals("On"))
-        {
+
             ChatData chatData = new ChatData();
             chatData.userName = "SAMA";
             chatData.message = "입찰이 등록되었습니다. \n메세지를 주고받아 거래를 진행할 수 있습니다.";
             chatData.time = System.currentTimeMillis();
 
-            mFirebaseDatabase.getReference(postnum).push().setValue(chatData);
+            mFirebaseDatabase.getReference(postnum).child(id).push().setValue(chatData);
 
             sendPostToFCM();
 
 
-        }
+
 
         PostAsync post = new PostAsync();
         post.execute();
@@ -444,42 +451,43 @@ public class TradeBidderYet extends AppCompatActivity
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        Log.d("checkkk",dataSnapshot.toString());
+                        Log.d("checkkk", dataSnapshot.toString());
 
-                        new Thread(new Runnable() {
+                        if (postAlarm.equals("true")) {
+                            new Thread(new Runnable() {
 
-                            @Override
-                            public void run() {
-                                try {
+                                @Override
+                                public void run() {
+                                    try {
 
-                                    // FMC 메시지 생성 start
-                                    JSONObject root = new JSONObject();
-                                    JSONObject notification = new JSONObject();
-                                    notification.put("body", "구매신청한 글에 새로운 입찰이 들어왔습니다.");
-                                    notification.put("title", getString(R.string.app_name));
-                                    root.put("notification", notification);
-                                    root.put("to", postToken);   // FMC 메시지 생성 end
+                                        // FMC 메시지 생성 start
+                                        JSONObject root = new JSONObject();
+                                        JSONObject notification = new JSONObject();
+                                        notification.put("body", "구매신청한 글에 새로운 입찰이 들어왔습니다.");
+                                        notification.put("title", getString(R.string.app_name));
+                                        root.put("notification", notification);
+                                        root.put("to", postToken);   // FMC 메시지 생성 end
 
-                                    URL Url = new URL(FCM_MESSAGE_URL);
-                                    HttpURLConnection conn = (HttpURLConnection) Url.openConnection();
-                                    conn.setRequestMethod("POST");
-                                    conn.setDoOutput(true);
-                                    conn.setDoInput(true);
-                                    conn.addRequestProperty("Authorization", "key=" + SERVER_KEY);
-                                    conn.setRequestProperty("Accept", "application/json");
-                                    conn.setRequestProperty("Content-type", "application/json");
-                                    OutputStream os = conn.getOutputStream();
-                                    os.write(root.toString().getBytes("utf-8"));
-                                    os.flush();
-                                    conn.getResponseCode();
+                                        URL Url = new URL(FCM_MESSAGE_URL);
+                                        HttpURLConnection conn = (HttpURLConnection) Url.openConnection();
+                                        conn.setRequestMethod("POST");
+                                        conn.setDoOutput(true);
+                                        conn.setDoInput(true);
+                                        conn.addRequestProperty("Authorization", "key=" + SERVER_KEY);
+                                        conn.setRequestProperty("Accept", "application/json");
+                                        conn.setRequestProperty("Content-type", "application/json");
+                                        OutputStream os = conn.getOutputStream();
+                                        os.write(root.toString().getBytes("utf-8"));
+                                        os.flush();
+                                        conn.getResponseCode();
 
 
-
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
-                            }
-                        }).start();
+                            }).start();
+                        }
                     }
 
                     @Override
@@ -548,12 +556,12 @@ public class TradeBidderYet extends AppCompatActivity
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    Log.d("checkkk",dataSnapshot.toString());
-                    postToken = dataSnapshot.child("fcmToken").getValue(true).toString();
-                    postManagerOnOff = dataSnapshot.child("ManagerOnOff").getValue(true).toString();
-                    postMessageOnOff = dataSnapshot.child("MessageOnOff").getValue(true).toString();
+                    user = dataSnapshot.getValue(UserData1.class);
 
-                    Log.d("checkkkkk",postManagerOnOff + postMessageOnOff);
+                    Log.d("checkkk",dataSnapshot.toString());
+                    postToken = user.fcmToken;
+                    postAlarm = user.TradeAlarm;
+
                 }
 
                 @Override
@@ -669,7 +677,7 @@ public class TradeBidderYet extends AppCompatActivity
                 BidImageAsync data = new BidImageAsync();
                 data.execute();
             } else {
-                Toast.makeText(TradeBidderYet.this, "게시글 등록이 실패하였습니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(TradeBidderYet.this, "이미 입찰글이 존재합니다.", Toast.LENGTH_LONG).show();
             }
             super.onProgressUpdate(values);
         }

@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:onClick="GoOpponentPopup"
             app:srcCompat="@drawable/user" />
 
     </LinearLayout>
@@ -38,7 +37,6 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="박사마"
-            android:onClick="GoOpponentPopup"
             android:textSize="40sp" />
 
         <TextView

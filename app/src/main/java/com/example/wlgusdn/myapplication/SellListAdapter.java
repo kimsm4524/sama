@@ -64,13 +64,14 @@ public class SellListAdapter extends BaseAdapter
 
         TextView SellDataCount =  convertView.findViewById(R.id.SellDataCount);
         TextView SellDataPrice  = convertView.findViewById(R.id.SellDataPrice);
-        TextView SellDataDate = convertView.findViewById(R.id.SellDataDate);
+        TextView SellDataTitle = convertView.findViewById(R.id.SellDataTitle);
         ImageView SellImage = convertView.findViewById(R.id.SellImage);
 
         Picasso.get().load(MySellData.get(position).url).into(SellImage);
+
+        SellDataTitle.setText("제목 : " + MySellData.get(position).Title);
         SellDataCount.setText("수랑 : "+MySellData.get(position).Count);
         SellDataPrice.setText("개당 가격 : "+MySellData.get(position).Price);
-        SellDataDate.setText("가능 배송일 : " + MySellData.get(position).Date);
         return convertView;
     }
 }

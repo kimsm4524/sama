@@ -52,17 +52,13 @@ public class MyTrade extends AppCompatActivity
     String sellid;
 
     ArrayList<SellData> SData;
-    ArrayList<SellData> SData1;
 
-    ArrayList<SellData> TData;
-    ArrayList<SellData> TData1;
+    ArrayList<TradeData> TData;
 
 
     ArrayList<BuyData> BData;
-    ArrayList<BuyData> BData1;
 
     ArrayList<CompleteData> CData;
-    ArrayList<CompleteData> CData1;
 
     private Loading l;
 
@@ -83,6 +79,7 @@ public class MyTrade extends AppCompatActivity
 
         SData = new ArrayList<SellData>();
         BData = new ArrayList<BuyData>();
+        TData = new ArrayList<TradeData>();
         CData = new ArrayList<CompleteData>();
 
 
@@ -90,33 +87,14 @@ public class MyTrade extends AppCompatActivity
         sd.execute();
         ListingBd bd = new ListingBd();
         bd.execute();
-
-
-
-        Completelv = (ListView)findViewById(R.id.BuyCompleteList);
-        CompleteListAdapter cadapter = new CompleteListAdapter(CData) ;
-        Completelv.setAdapter(cadapter);
-
-
+        ListingTd td = new ListingTd();
+        td.execute();
+        ListingCd cd = new ListingCd();
+        cd.execute();
 
 
 
 
-
-
-
-       Completelv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Intent in = new Intent(MyTrade.this,Trade.class);
-               // startActivity(in);
-                //완료된 거래 정보 보여주기
-                Intent in = new Intent(MyTrade.this,Complete.class);
-                startActivity(in);
-            }
-        });
-
-        setListViewHeightBasedOnChildren(Completelv);
 
 
 
@@ -207,6 +185,61 @@ public class MyTrade extends AppCompatActivity
             return null;
         }
     }
+    class ListingCd extends AsyncTask<Void, String, Void> {
+        String name;
+        String point;
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
+            Completelv = (ListView)findViewById(R.id.CompleteList);
+            CompleteListAdapter cadapter = new CompleteListAdapter(CData) ;
+            Completelv.setAdapter(cadapter);
+
+            Completelv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //Intent in = new Intent(MyTrade.this,Trade.class);
+                    // startActivity(in);
+                    //완료된 거래 정보 보여주기
+                    Intent in = new Intent(MyTrade.this,Complete.class);
+                    in.putExtra("postnum",CData.get(position).postnum);
+                    in.putExtra("seller",CData.get(position).seller);
+                    startActivity(in);
+                }
+            });
+
+            setListViewHeightBasedOnChildren(Completelv);
+
+            Log.d("checkzzz","Listing");
+        }
+
+        protected Void doInBackground(Void... voids) {//user thread
+            // 70.12.244.133
+            String url = "http://52.79.255.160:8080/mycomplete.jsp?id="+idd;
+            Document xml = null;
+            Log.i("zzzzzzzz",url);
+            try {
+                xml = Jsoup.connect(url).get();//url에 접속해서 xml파일을 받아옴
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Elements result = xml.select("data");
+            CData.clear();
+            for (Element e : result) {
+                CompleteData cd = new CompleteData();
+                cd.Title = e.select("title").text().toString();
+                cd.Count = e.select("count").text().toString();
+                cd.seller = e.select("seller").text().toString();
+                cd.postnum = e.select("postnum").text().toString();
+                cd.Star = e.select("grade").text().toString();
+                cd.url = "http://samaimage.s3.ap-northeast-2.amazonaws.com/thumbnail/post/"+cd.postnum+"/image0.png";
+                CData.add(cd);
+            }
+            publishProgress();
+            return null;
+        }
+    }
     class ListingSd extends AsyncTask<Void, String, Void> {
         String name;
         String point;
@@ -252,22 +285,82 @@ public class MyTrade extends AppCompatActivity
             for (Element e : result) {
                 SellData sd = new SellData();
                 sd.Count = e.select("count").text().toString();
-                sd.Date = e.select("s_date").text().toString();
+                sd.Title = e.select("title").text().toString();
                 sd.Price = e.select("price").text().toString();
                 sd.postnum = e.select("postnum").text().toString();
                 sd.postid = e.select("postid").text().toString();
                 sd.url = "http://samaimage.s3.ap-northeast-2.amazonaws.com/thumbnail/auction/"+sd.postnum+"/"+idd+"/image0.png";
                 SData.add(sd);
-
             }
             publishProgress();
             return null;
         }
     }
+    class ListingTd extends AsyncTask<Void, String, Void> {
+    String name;
+    String point;
+    @Override
+    protected void onProgressUpdate(String... values) {
+        super.onProgressUpdate(values);
+        Tradinglv = (ListView)findViewById(R.id.TradingList);
+        TradeListAdapter tadapter = new TradeListAdapter(TData) ;
+        Tradinglv.setAdapter(tadapter);
+        Tradinglv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(MyTrade.this,TradeAlready.class);
+                //여기서 Trade로 들어감
+                i.putExtra("postnum",TData.get(position).postnum);
+                Log.d("qweasdid",idd);
+                // i에 postid넣어줘야함
+                i.putExtra("Postid",TData.get(position).postid);
+                i.putExtra("Sellid",TData.get(position).sellid);
+
+                Log.d("qweasdid",TData.get(position).postid+ "   "+TData.get(position).sellid);
+
+                startActivity(i);
+            }
+        });
+
+        setListViewHeightBasedOnChildren(Tradinglv);
+        Handler hd = new Handler();
+        hd.postDelayed(new MyTrade.splashhandler(), 1000);
+        Log.d("checkzzz","Listing");
+    }
+
+    protected Void doInBackground(Void... voids) {//user thread
+        // 70.12.244.133
+        String url = "http://52.79.255.160:8080/mytrading.jsp?id="+idd;
+        Document xml = null;
+        Log.i("zzzzzzzz",url);
+        try {
+            xml = Jsoup.connect(url).get();//url에 접속해서 xml파일을 받아옴
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Elements result = xml.select("data");
+        TData.clear();
+        for (Element e : result) {
+            TradeData td = new TradeData();
+            td.Count = e.select("count").text().toString();
+            td.Date = e.select("s_date").text().toString();
+            td.Price = e.select("price").text().toString();
+            td.postnum = e.select("postnum").text().toString();
+            td.postid = e.select("postid").text().toString();
+            td.sellid = e.select("sellerid").text().toString();
+            td.url = "http://samaimage.s3.ap-northeast-2.amazonaws.com/thumbnail/auction/"+td.postnum+"/"+td.sellid+"/image0.png";
+            TData.add(td);
+            }
+        publishProgress();
+        return null;
+    }
+}
     private class splashhandler implements Runnable{
         public void run(){
 
             l.dismiss();
         }
     }
+
 }
