@@ -1,154 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    tools:showIn="@layout/app_bar_main"
-    android:orientation="vertical"
     android:focusable="true"
-    android:focusableInTouchMode="true">
-
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/app_bar_main">
 
 
     <LinearLayout
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
 
-    android:orientation="vertical"
-
-
-    >
+        android:layout_height="0dp"
 
 
-
-<android.support.v4.widget.SwipeRefreshLayout
-
-    android:id="@+id/Main_ReFresh"
-    android:layout_width="match_parent"
-
-    android:layout_height="0dp"
-    android:layout_weight="10">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
-    <ScrollView
-        android:id="@+id/Main_Nest"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        <android.support.v4.widget.SwipeRefreshLayout
 
-        <LinearLayout
+            android:id="@+id/Main_ReFresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="30dp">
 
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:srcCompat="@color/design_default_color_primary" />
+            android:layout_height="0dp"
+            android:layout_weight="10">
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="경매 보기"
-                android:textSize="40sp"
-                android:visibility="gone" />
 
-            <HorizontalScrollView
-                android:id="@+id/Main_Scv"
+            <ScrollView
+                android:id="@+id/Main_Nest"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:fillViewport="true"
-                android:paddingTop="10dp"
-                android:visibility="gone">
+                android:layout_height="match_parent"
+                android:fillViewport="true">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:paddingTop="30dp">
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:srcCompat="@color/design_default_color_primary" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="경매 보기"
+                        android:textSize="40sp"
+                        android:visibility="gone" />
+
+                    <HorizontalScrollView
+                        android:id="@+id/Main_Scv"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:fillViewport="true"
+                        android:paddingTop="10dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/button20"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:text="Button" />
+
+                            <Button
+                                android:id="@+id/button12"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:text="Button" />
+
+                            <Button
+                                android:id="@+id/button18"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:text="Button" />
+
+                            <Button
+                                android:id="@+id/button16"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:text="Button" />
+
+                            <Button
+                                android:id="@+id/button17"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:text="Button" />
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
+                    <GridView
+                        android:id="@+id/Main_GridView"
+                        android:layout_width="320dp"
+                        android:layout_height="700dp"
+                        android:layout_gravity="center"
+                        android:numColumns="2"
+                        android:paddingTop="40dp">
+
+                    </GridView>
+
 
                     <Button
-                        android:id="@+id/button20"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:text="Button" />
+                        android:id="@+id/button"
+                        android:layout_width="320dp"
+                        android:layout_height="46dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/button_stroke"
+                        android:onClick="GoSearch"
+                        android:text="더보기"
+                        android:textColor="#e1a14a" />
 
-                    <Button
-                        android:id="@+id/button12"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:text="Button" />
-
-                    <Button
-                        android:id="@+id/button18"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:text="Button" />
-
-                    <Button
-                        android:id="@+id/button16"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:text="Button" />
-
-                    <Button
-                        android:id="@+id/button17"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:text="Button" />
 
                 </LinearLayout>
-            </HorizontalScrollView>
+            </ScrollView>
 
-            <GridView
-                android:id="@+id/Main_GridView"
-                android:layout_width="320dp"
-                android:layout_height="700dp"
-                android:layout_gravity="center"
-                android:numColumns="2"
-                android:paddingTop="40dp">
-
-            </GridView>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:onClick="GoSearch"
-                android:text="+ 구매글 더보기" />
-
-
-        </LinearLayout>
-    </ScrollView>
-
-</android.support.v4.widget.SwipeRefreshLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#009999"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/button10"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:onClick="BuyNotice"
-            android:text="주문하기" />
     </LinearLayout>
-</LinearLayout>
+
     <ImageView
         android:id="@+id/Main_back"
         android:layout_width="match_parent"
@@ -159,6 +149,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:color/transparent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button10"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="66dp"
+        android:backgroundTint="#e1a14a"
+        android:background="#e1a14a"
+        android:clickable="true"
+        android:onClick="BuyNotice"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:fabCustomSize="65dp"
+        app:srcCompat="@drawable/ico_write"/>
 
     <ImageView
         android:id="@+id/Main_img_android"
