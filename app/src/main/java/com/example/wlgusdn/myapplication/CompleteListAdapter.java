@@ -77,9 +77,5 @@ public class CompleteListAdapter extends BaseAdapter
 
         return convertView;
     }
-    public void goTrade()
-    {
 
-
-    }
 }

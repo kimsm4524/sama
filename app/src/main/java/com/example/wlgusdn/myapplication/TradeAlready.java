@@ -287,8 +287,6 @@ public class TradeAlready  extends AppCompatActivity
                                 new decisionAsync().execute();
                                 Toast.makeText(TradeAlready.this, "'확인'버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
                                 finish();
-                                //구매글, 글에 대한 입찰글 삭제
-
                             }
                         });
 
@@ -297,8 +295,6 @@ public class TradeAlready  extends AppCompatActivity
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
-                                //Do Nothing
 
                             }
                         });
@@ -322,11 +318,11 @@ public class TradeAlready  extends AppCompatActivity
                         alertdialog.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                new decisionAsync().execute();
                                 Toast.makeText(TradeAlready.this, "'확인'버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
-                                finish();
-                                //구매글, 글에 대한 입찰글 삭제
-
+                                Intent i = new Intent(TradeAlready.this,ReviewPopup.class);
+                                i.putExtra("postnum",postnum);
+                                i.putExtra("seller",Sellid);
+                                startActivity(i);
                             }
                         });
 
@@ -367,6 +363,11 @@ public class TradeAlready  extends AppCompatActivity
             publishProgress();
             return null;
         }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
     class ListauctionAsync extends AsyncTask<Void, String, Void> {
         String count;
@@ -453,10 +454,8 @@ public class TradeAlready  extends AppCompatActivity
             String url;
             String param;
             url = "http://52.79.255.160:8080/decision.jsp";
-            if (complete.getText().equals("인계확인"))
-                param = "?postnum=" + postnum + "&sellerid=" + Sellid+"&condition=2";
-            else
-                param = "?postnum=" + postnum + "&sellerid=" + Sellid+"&condition=3";
+            param = "?postnum=" + postnum + "&sellerid=" + Sellid+"&condition=2";
+
             Document xml = null;
             String u = url + param;
             try {
