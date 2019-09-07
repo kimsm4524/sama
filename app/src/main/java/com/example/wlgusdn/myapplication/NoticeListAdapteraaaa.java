@@ -69,55 +69,7 @@ public class NoticeListAdapteraaaa extends BaseAdapter
     public View getView(final int position, View convertView, ViewGroup parent)
     {
 
-        if(Check==true) {
 
-            if (convertView == null) {
-                final Context context = parent.getContext();
-                if (inflater == null) {
-                    inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                }
-                convertView = inflater.inflate(R.layout.notice_info, parent, false);
-            }
-
-            //
-
-
-            ImageView NoticeDataImage = convertView.findViewById(R.id.Notice_imageView);
-            TextView NoticeDataCount = convertView.findViewById(R.id.Notice_Count);
-            TextView NoticeDataPersonNum = convertView.findViewById(R.id.Notice_BidCount);
-            TextView NoticeDataDate = convertView.findViewById(R.id.Notice_Title);
-            TextView NoticeDataTitle = convertView.findViewById(R.id.Notice_Title);
-            TextView NoticeDataHit = convertView.findViewById(R.id.Notice_Hit_TextView);
-            Log.i("zzzzzzzzzzzzzz",MyNoticeData.get(position).url);
-            ToggleButton tb = convertView.findViewById(R.id.Notice_Toggle);
-
-
-
-
-            tb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                    if(isChecked)//선택됨
-                    {
-                        //장바구니에 담겨야함
-                    }
-                    else
-                    {
-                        //장바구니에서 삭제해야함
-                    }
-
-                }
-            });
-
-            Picasso.get().load(MyNoticeData.get(position).url).into(NoticeDataImage);
-            NoticeDataTitle.setText(MyNoticeData.get(position).Title);
-            NoticeDataCount.setText("수량 : "+MyNoticeData.get(position).Count);
-            NoticeDataPersonNum.setText("입찰자 수 : "+MyNoticeData.get(position).PersonNum);
-            NoticeDataHit.setText("조회수 : "+MyNoticeData.get(position).Hit);
-        }
-        else
-        {
             if (convertView == null) {
                 final Context context = parent.getContext();
                 if (inflater == null) {
@@ -160,11 +112,11 @@ public class NoticeListAdapteraaaa extends BaseAdapter
 
 
             Picasso.get().load(MyNoticeData.get(position).url).into(NoticeDataImage);
-            NoticeDataCount.setText("수량 : "+MyNoticeData.get(position).Count);
-            NoticeDataPersonNum.setText("입찰자 수 : "+MyNoticeData.get(position).PersonNum);
-            NoticeTitle.setText("제목 : "+MyNoticeData.get(position).Title);
+            NoticeDataCount.setText(""+MyNoticeData.get(position).Count);
+            NoticeDataPersonNum.setText(""+MyNoticeData.get(position).PersonNum);
+            NoticeTitle.setText(""+MyNoticeData.get(position).Title);
 
-        }
+
 
 
         return convertView;

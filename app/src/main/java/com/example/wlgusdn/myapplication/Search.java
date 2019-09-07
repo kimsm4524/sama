@@ -1,10 +1,12 @@
 package com.example.wlgusdn.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -22,6 +24,7 @@ import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.GridView;
@@ -75,6 +78,7 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
     LinearLayout two;
     String str;
     EditText Title;
+    Button PastButton;
     int myLastVisiblePos;
     ListingAsync list;
     @Override
@@ -82,6 +86,8 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_searching);
+
+        PastButton = findViewById(R.id.SearchButton1);
         sf = getSharedPreferences(Login, 0);
         one = findViewById(R.id.one);
         two = findViewById(R.id.two);
@@ -96,6 +102,8 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
         tv = findViewById(R.id.SortText);
         NData = new ArrayList<>();
         NData1 = new ArrayList<>();
+
+
 
         gl.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -171,7 +179,17 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
 
     }
 
+    @SuppressLint("ResourceAsColor")
     public void SelectCategory(View view) {
+
+        Button NowButton = findViewById(view.getId());
+        Log.d("chcheck",NowButton.toString() + "/"+ view.getId());
+        PastButton.setTextColor(Color.parseColor("#afafaf"));
+
+        NowButton.setTextColor(Color.parseColor("#e1a14a"));
+        PastButton = NowButton;
+
+
         if(view.getId()==R.id.SearchButton1) {
 
 
@@ -196,6 +214,8 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
             startActivityForResult(in, 2);
 
         }
+
+
 
 
     }
@@ -578,33 +598,6 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
         public View getView(final int position, View convertView, ViewGroup parent)
         {
 
-            if(Check==true) {
-
-                if (convertView == null) {
-                    final Context context = parent.getContext();
-                    if (inflater == null) {
-                        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    }
-                    convertView = inflater.inflate(R.layout.notice_info, parent, false);
-                }
-
-                //
-
-
-                ImageView NoticeDataImage = convertView.findViewById(R.id.Notice_imageView);
-                TextView NoticeDataCount = convertView.findViewById(R.id.Notice_Count);
-                TextView NoticeDataPersonNum = convertView.findViewById(R.id.Notice_BidCount);
-                TextView NoticeDataDate = convertView.findViewById(R.id.Notice_Title);
-                Log.i("zzzzzzzzzzzzzz",MyNoticeData.get(position).url);
-
-                Picasso.get().load(MyNoticeData.get(position).url).into(NoticeDataImage);
-                NoticeDataCount.setText("수량 : "+MyNoticeData.get(position).Count);
-                NoticeDataPersonNum.setText("입찰자 수 : "+MyNoticeData.get(position).PersonNum);
-                NoticeDataDate.setText("희망배송일 : "+MyNoticeData.get(position).Date);
-
-            }
-            else
-            {
                 if (convertView == null) {
                     final Context context = parent.getContext();
                     if (inflater == null) {
@@ -646,11 +639,11 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
 
 
                 Picasso.get().load(MyNoticeData.get(position).url).into(NoticeDataImage);
-                NoticeDataCount.setText("수량 : "+MyNoticeData.get(position).Count);
-                NoticeDataPersonNum.setText("입찰자 수 : "+MyNoticeData.get(position).PersonNum);
-                NoticeDataDate.setText("희망배송일 : "+MyNoticeData.get(position).Date);
+                NoticeDataCount.setText(""+MyNoticeData.get(position).Count);
+                NoticeDataPersonNum.setText(""+MyNoticeData.get(position).PersonNum);
+                NoticeDataDate.setText(""+MyNoticeData.get(position).Date);
 
-            }
+
 
 
             return convertView;

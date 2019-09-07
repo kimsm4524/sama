@@ -31,13 +31,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="#ffffff"
                     android:orientation="vertical">
 
                     <android.support.v7.widget.GridLayout
                         android:id="@+id/one"
-                        android:layout_width="384dp"
+                        android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
+                        android:background="#f2f2f2"
                         android:gravity="center"
                         app:columnCount="3"
                         app:rowCount="2">
@@ -47,6 +49,9 @@
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:onClick="SelectCategory"
+                            android:textColor="#e1a14a"
+                            android:textSize="14sp"
+                            android:background="#f2f2f2"
                             android:text="가구" />
 
                         <Button
@@ -55,6 +60,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:onClick="SelectCategory"
+                            android:textColor="#afafaf"
+                            android:background="#f2f2f2"
                             android:text="식기" />
 
                         <Button
@@ -63,6 +70,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:onClick="SelectCategory"
+                            android:textColor="#afafaf"
+                            android:background="#f2f2f2"
                             android:text="식료품" />
 
                         <Button
@@ -70,6 +79,8 @@
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:onClick="SelectCategory"
+                            android:textColor="#afafaf"
+                            android:background="#f2f2f2"
                             android:text="미정" />
 
                         <Button
@@ -78,6 +89,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:onClick="SelectCategory"
+                            android:textColor="#afafaf"
+                            android:background="#f2f2f2"
                             android:text="미정" />
 
                         <Button
@@ -86,8 +99,42 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:onClick="SelectCategory"
+                            android:textColor="#afafaf"
+                            android:background="#f2f2f2"
                             android:text="미정" />
                     </android.support.v7.widget.GridLayout>
+
+                    <LinearLayout
+                        android:id="@+id/three"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/Search_Edit_Title"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:ems="10"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
+                            android:hint="검색어를 입력해주세요."
+                            android:background="#f2f2f2"
+                            android:inputType="textPersonName" />
+
+                        <Button
+                            android:id="@+id/Search_Button_TitleSearch"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="#c28430"
+                            android:onClick="TitleSearch"
+                            android:textColor="#ffffff"
+                            android:drawableLeft="@drawable/ico_btn_search"
+                            android:paddingLeft="10dp"
+                            android:text="검색" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/two"
@@ -101,9 +148,11 @@
                             android:layout_height="30dp"
                             android:layout_gravity="center"
                             android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
+                            android:layout_marginLeft="20dp"
+                            android:layout_weight="3"
+                            android:gravity="left"
                             android:text="전체"
+                            android:textColor="#000000"
                             android:textSize="20sp" />
 
                         <Button
@@ -115,33 +164,10 @@
                             android:gravity="center"
                             android:onClick="SelectSort"
                             android:text="최신순 ▼"
-                            android:textSize="20sp" />
+                            android:background="#ffffff"
+                            android:textSize="12sp" />
 
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/three"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/Search_Edit_Title"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:ems="10"
-                            android:inputType="textPersonName"
-                            android:hint="검색어를 입력해주세요." />
-
-                        <Button
-                            android:id="@+id/Search_Button_TitleSearch"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="검색"
-                            android:onClick="TitleSearch"/>
                     </LinearLayout>
 
                     <GridView

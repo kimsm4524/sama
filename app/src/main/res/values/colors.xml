@@ -3,5 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#e2a249</color>
     <color name="colorAccent">#d81b60</color>
+    <color name="SearchNotCheck">#afafaf</color>
+    <color name="SearchCheck">#e1a14a</color>
     <color name="transparent" >@color/transparent</color>
 </resources>

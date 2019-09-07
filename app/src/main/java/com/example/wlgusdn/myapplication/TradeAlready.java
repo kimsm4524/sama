@@ -324,6 +324,16 @@ public class TradeAlready  extends AppCompatActivity
                             public void onClick(DialogInterface dialog, int which) {
                                 new decisionAsync().execute();
                                 Toast.makeText(TradeAlready.this, "'확인'버튼을 눌렀습니다.", Toast.LENGTH_SHORT).show();
+
+
+
+                                Intent in = new Intent(TradeAlready.this, ReviewPopup.class);
+
+
+                                startActivity(in);
+
+
+
                                 finish();
                                 //구매글, 글에 대한 입찰글 삭제
 
