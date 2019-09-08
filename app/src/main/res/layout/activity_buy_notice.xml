@@ -21,27 +21,54 @@
             android:orientation="vertical" >
 
 
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="#e1a14a"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/icon_btn_back"
+                    android:onClick="backPress"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textView20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="155dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="주문하기"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/button4"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center"
-                    android:text="원하는 물품의 사진을 등록하세요.미등록시 기본 사진으로 등록됩니다."
-                    android:textColor="#0000ff"
-                    android:textSize="16sp" />
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="30dp">
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView"
@@ -49,40 +76,79 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text=" 제목 : "
-                        android:textColor="#0000ff"
+                        android:text="제목"
+                        android:textColor="#000000"
                         android:textSize="20sp" />
 
                     <EditText
                         android:id="@+id/Buy_Title"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="3"
                         android:ems="10"
                         android:hint="무제"
                         android:inputType="textPersonName" />
                 </LinearLayout>
 
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/rectangle"
+                    android:layout_marginLeft="96dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="25dp">
+
+                    <TextView
+                        android:id="@+id/textView0"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="사진"
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="left"
+                        android:text="원하는 물품의 사진을 등록하세요.
+미등록시 기본 사진으로 등록됩니다."
+                        android:textColor="#cacaca"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+
+
                 <android.support.v7.widget.GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="100dp"
                     android:layout_marginTop="20dp"
                     app:columnCount="2"
                     app:rowCount="2">
 
                     <FrameLayout
                         android:id="@+id/Picture"
-                        android:layout_width="150dp"
-                        android:layout_height="100dp">
+                        android:layout_width="124dp"
+                        android:layout_height="94dp">
 
                         <ImageView
                             android:id="@+id/Pictureiv"
-                            android:layout_width="150dp"
-                            android:layout_height="100dp"
+                            android:layout_width="124dp"
+                            android:layout_height="94dp"
                             android:adjustViewBounds="true"
+                            android:background="#f2f2f2"
                             android:onClick="UpLoadPicture"
-                            app:srcCompat="@drawable/ic_menu_gallery"
-                            android:scaleType="centerCrop"/>
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/img_camera" />
 
                         <ImageButton
                             android:id="@+id/Picture_Delete"
@@ -97,17 +163,17 @@
 
                     <FrameLayout
                         android:id="@+id/Picture1"
-                        android:layout_width="150dp"
-                        android:layout_height="100dp"
+                        android:layout_width="124dp"
+                        android:layout_height="94dp"
                         android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/Pictureiv1"
-                            android:layout_width="150dp"
-                            android:layout_height="100dp"
+                            android:layout_width="124dp"
+                            android:layout_height="94dp"
                             android:adjustViewBounds="true"
                             android:onClick="UpLoadPicture"
-                            android:scaleType="centerCrop"/>
+                            android:scaleType="centerCrop" />
 
                         <ImageButton
                             android:id="@+id/Picture_Delete1"
@@ -122,17 +188,17 @@
 
                     <FrameLayout
                         android:id="@+id/Picture2"
-                        android:layout_width="150dp"
-                        android:layout_height="100dp"
+                        android:layout_width="124dp"
+                        android:layout_height="94dp"
                         android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/Pictureiv2"
-                            android:layout_width="150dp"
-                            android:layout_height="100dp"
+                            android:layout_width="124dp"
+                            android:layout_height="94dp"
                             android:adjustViewBounds="true"
                             android:onClick="UpLoadPicture"
-                            android:scaleType="centerCrop"/>
+                            android:scaleType="centerCrop" />
 
                         <ImageButton
                             android:id="@+id/Picture_Delete2"
@@ -147,17 +213,17 @@
 
                     <FrameLayout
                         android:id="@+id/Picture3"
-                        android:layout_width="150dp"
-                        android:layout_height="100dp"
+                        android:layout_width="124dp"
+                        android:layout_height="94dp"
                         android:visibility="gone">
 
                         <ImageView
                             android:id="@+id/Pictureiv3"
-                            android:layout_width="150dp"
-                            android:layout_height="100dp"
+                            android:layout_width="124dp"
+                            android:layout_height="94dp"
                             android:adjustViewBounds="true"
                             android:onClick="UpLoadPicture"
-                            android:scaleType="centerCrop"/>
+                            android:scaleType="centerCrop" />
 
                         <ImageButton
                             android:id="@+id/Picture_Delete3"
@@ -171,174 +237,72 @@
                     </FrameLayout>
                 </android.support.v7.widget.GridLayout>
 
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="96dp"
+                    app:srcCompat="@drawable/rectangle" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="96dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="카테고리"
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/Buy_Textview_Category"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:onClick="goCategory"
+                        android:layout_marginRight="30dp"
+                        android:drawableRight="@drawable/ico_category"
+                        android:text="가구"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="96dp"
+                    app:srcCompat="@drawable/rectangle" />
+
 
             </LinearLayout>
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="카테고리"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:textColor="#0000ff"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/Furniture"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="SelectCategory"
-                    android:text="가구" />
-
-                <Button
-                    android:id="@+id/Tableware"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="SelectCategory"
-                    android:text="식기" />
-
-                <Button
-                    android:id="@+id/Grocery"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="SelectCategory"
-                    android:text="식료품" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/yet1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="추후"
-                    android:onClick="SelectCategory"/>
-
-                <Button
-                    android:id="@+id/yet2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="추후"
-                    android:onClick="SelectCategory"/>
-
-                <Button
-                    android:id="@+id/yet3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="추후"
-                    android:onClick="SelectCategory"/>
-            </LinearLayout>
-
-            <RadioGroup
-                android:id="@+id/Buy_Notice_RadioGroup1"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <RadioButton
-                    android:id="@+id/radioButton1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="Select"
-                    android:text="" />
-
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="Select"
-                    android:text="" />
-
-                <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="Select"
-                    android:text="" />
-
-
-            </RadioGroup>
-
-            <RadioGroup
-                android:id="@+id/Buy_Notice_RadioGroup2"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <RadioButton
-                    android:id="@+id/radioButton4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="Select"
-                    android:text="" />
-
-                <RadioButton
-                    android:id="@+id/radioButton5"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="Select"
-                    android:text="" />
-
-                <RadioButton
-                    android:id="@+id/radioButton6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:onClick="Select"
-                    android:text="" />
-            </RadioGroup>
-
-            <EditText
-                android:id="@+id/Etc"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_gravity="right"
-                android:background="@drawable/ic_launcher_rectangle_inaccount"
-                android:ems="10"
-                android:hint="Name"
-                android:inputType="textPersonName"
-                android:visibility="gone" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="25dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="2"
                     android:gravity="center"
-                    android:textSize="20sp"
                     android:text="수량"
-                    android:textColor="#0000ff"/>
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/Countitem"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="5"
                     android:ems="10"
                     android:gravity="left"
                     android:hint="0"
@@ -348,15 +312,16 @@
                     android:id="@+id/textView8"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
+                    android:layout_weight="1"
                     android:gravity="left"
-                    android:textSize="20sp"
-                    android:text="개" />
+                    android:text="개"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
+                android:layout_marginTop="25dp"
                 android:orientation="vertical">
 
                 <RadioGroup
@@ -369,41 +334,40 @@
                         android:id="@+id/textView11"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="3"
+                        android:layout_weight="2"
                         android:gravity="center"
                         android:text="배송주소"
-                        android:textColor="#0000ff"
+                        android:textColor="#000000"
                         android:textSize="20sp" />
 
                     <RadioButton
                         android:id="@+id/Buy_MyAddress"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
+                        android:layout_weight="3"
                         android:text="등록된 주소" />
 
                     <RadioButton
                         android:id="@+id/Buy_NewAddress"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="새로운 주소" />
+                        android:layout_weight="3"
+                        android:text="새로운 주소"
+                        android:onClick="OpenMap"/>
                 </RadioGroup>
 
 
             </LinearLayout>
 
 
-
-                <TextView
-                    android:id="@+id/Buy_Address"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:ems="10"
-                    android:inputType="textMultiLine"
-                    android:textSize="30sp"
-                    android:gravity="center"/>
-
+            <TextView
+                android:id="@+id/Buy_Address"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="textMultiLine"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Buy_ExtraAddress"
@@ -416,7 +380,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="25dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -425,28 +390,32 @@
 
                     <TextView
                         android:id="@+id/textView18"
-                        android:layout_width="0dp"
+                        android:layout_width="96dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:gravity="center"
                         android:text="희망 날짜"
-                        android:textColor="#0000ff"
+                        android:textColor="#000000"
                         android:textSize="20sp" />
 
                     <Button
                         android:id="@+id/button5"
-                        android:layout_width="0dp"
+                        android:layout_width="90dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:onClick="NoticeDate"
-                        android:text="날짜 설정" />
+                        android:background="@drawable/button_stroke"
+                        android:text="날짜 설정"
+                        android:textColor="#e1a14a"/>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="96dp"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:id="@+id/YearText"
@@ -477,42 +446,50 @@
                 </LinearLayout>
             </LinearLayout>
 
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="96dp"
+                app:srcCompat="@drawable/rectangle" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="원하는 조건"
-                    android:textColor="#0000ff"
+                    android:text="조건"
+                    android:textColor="#000000"
                     android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/Item_Character"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
                     android:ems="10"
                     android:hint="엔틱한 느낌, 밝은 색상의 나무, 목재는 느티나무, 높이는 50 ~ 60cm 등등 "
                     android:inputType="textMultiLine"
                     android:textSize="14sp" />
             </LinearLayout>
 
-
-
-
-
             <Button
                 android:id="@+id/Notice_Register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="Notice_Register"
+                android:layout_marginTop="20dp"
                 android:text="등록하기"
-                android:onClick="Notice_Register"/>
+                android:background="@drawable/button_stroke"
+                android:textColor="#e1a14a"/>
 
         </LinearLayout>
     </ScrollView>
