@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -38,9 +39,9 @@ public class Account_Setting extends AppCompatActivity
     EditText Pass1,Pass2;
     TextView address;
     LinearLayout ll;
-    ScrollView scv;
-    EditText Password_Edit;
-    Button Password_Button;
+    LinearLayout scv;
+    EditText Password_Edit,business_edit;
+    TextView Password_Button;
     String Login = "login";
     SharedPreferences sf;
     @Override
@@ -51,15 +52,19 @@ public class Account_Setting extends AppCompatActivity
         setContentView(R.layout.activity_account_setting);
 
         ll=findViewById(R.id.Setting_Password_Check);
-        scv = findViewById(R.id.Setting_ScrollView);
+        scv = findViewById(R.id.setting_layout);
         sf = getSharedPreferences(Login,0);
 
 
         Pass1=findViewById(R.id.setting_Password1);
         Pass2=findViewById(R.id.setting_Password2);
         address = findViewById(R.id.setting_Address);
-        Password_Edit = findViewById(R.id.Setting_Password_Check_EditText);
-        Password_Button = findViewById(R.id.Setting_Password_Check_Button);
+        Password_Edit = findViewById(R.id.setting_pass);
+        address.setText(sf.getString("address",""));
+        business_edit = findViewById(R.id.setting_business);
+        business_edit.setHint(sf.getString("business_num",""));
+        Password_Button = findViewById(R.id.password_btn);
+
     }
     @Override
     public void onBackPressed() {

@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity
     TransferUtility transferUtility;
     File f;
     Bitmap bm;
-    Bitmap[] bmp;
     private FirebaseDatabase mFirebaseDatabase;
     private BackPressCloseHandler backPressCloseHandler;
 
