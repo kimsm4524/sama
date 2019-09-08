@@ -29,9 +29,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="dddddd"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".DaumWebView" />
         <activity android:name=".splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,8 +39,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".PictureAttacher" />
-        <activity android:name=".ArlamPopup" />
+        <activity android:name=".AlramPopup" />
         <activity android:name=".Basket" />
+        <activity android:name=".Category" />
         <activity android:name=".Account_Setting" />
         <activity android:name=".Account" />
         <activity android:name=".TradeAlready" />

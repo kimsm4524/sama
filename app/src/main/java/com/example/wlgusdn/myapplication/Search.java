@@ -224,12 +224,6 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
         in.putExtra("type", "sort");
         startActivityForResult(in, 1);
     }
-
-    public void GoTrade(View view)
-    {
-        Intent intent = new Intent(Search.this,Trade.class);
-        startActivity(intent);
-    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -460,7 +454,7 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
 
         protected Void doInBackground(Void... voids) {//user thread
             // 70.12.244.133
-            String url = "http://52.79.255.160:8080/categori2.jsp?sort="+sort+"&categori2="+categori2;
+            String url = "http://52.79.255.160:8080/categori2.jsp?sort="+sort+"&categori="+categori2;
             Document xml = null;
             posts=0;
             Log.i("zzzzzzzz",url);

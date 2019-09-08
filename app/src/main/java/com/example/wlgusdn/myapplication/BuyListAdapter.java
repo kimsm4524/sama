@@ -79,9 +79,5 @@ public class BuyListAdapter extends BaseAdapter
         BuyDataHit.setText("조회수 : "+ MyBuyData.get(position).hit);
         return convertView;
     }
-    public void goTrade()
-    {
 
-
-    }
 }

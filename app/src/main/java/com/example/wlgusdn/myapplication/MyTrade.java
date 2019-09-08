@@ -130,6 +130,13 @@ public class MyTrade extends AppCompatActivity
         listView.setLayoutParams(params);
         listView.requestLayout();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
     class ListingBd extends AsyncTask<Void, String, Void> {
         String name;
         String point;

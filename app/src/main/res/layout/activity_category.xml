@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#e1a14a"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="100dp"
+            android:layout_weight="1"
+            android:background="@drawable/icon_btn_back"
+            android:onClick="backPress"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="74dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="155dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="카테고리"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+    </android.support.constraint.ConstraintLayout>
+
+    <ListView
+        android:id="@+id/Category_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

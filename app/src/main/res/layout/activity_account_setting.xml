@@ -1,216 +1,337 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#ffffff "
     android:focusable="true"
     android:focusableInTouchMode="true"
-    >
-
-
-    <ScrollView
-        android:id="@+id/Setting_ScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:visibility="gone">
-
-        <LinearLayout
-            android:id="@+id/asdasgsaha"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="11">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="회원 정보 관리"
-                android:textSize="40sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="3"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView102"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="비밀번호 변경"
-                    android:textSize="20sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView100"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="변경할 비밀번호" />
-
-                    <EditText
-                        android:id="@+id/setting_Password1"
-                        android:layout_width="0dp"
-
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:ems="10"
-                        android:hint="********"
-                        android:inputType="textPassword"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView101"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="비밀번호 확인" />
-
-                    <EditText
-                        android:id="@+id/setting_Password2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:ems="10"
-                        android:hint="********"
-                        android:inputType="textPassword"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/Setting_Change_Password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="ChangePassword"
-                    android:text="비밀번호 변경" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="4"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="주소 변경"
-                    android:textSize="20sp" />
-
-                <Button
-                    android:id="@+id/button8"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    android:onClick="OpenMap"
-                    android:text="주소 찾기" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="2"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/setting_Address"
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:text="주소 : "
-                        android:textSize="20sp" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/Setting_Change_Address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="ChangeAddress"
-                    android:text="주소변경" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="3"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="사업자 정보 변경"
-                    android:textSize="20sp" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:text="사진 변경" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
+    android:orientation="vertical"
+    tools:layout_editor_absoluteY="25dp">
 
     <LinearLayout
         android:id="@+id/Setting_Password_Check"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#e1a14a  "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/icon_btn_back" />
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="14sp"
+                android:text="회원정보"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
         <TextView
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:id="@+id/textView27"
+            android:layout_width="320dp"
+            android:layout_height="24dp"
             android:layout_gravity="center"
-            android:gravity="center"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
             android:text="현재 비밀번호"
-            android:textSize="30sp" />
+            android:textColor="#000000"
+            android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/Setting_Password_Check_EditText"
-            android:layout_width="350dp"
-            android:layout_height="40dp"
+            android:id="@+id/setting_pass"
+            android:layout_width="320dp"
+            android:layout_height="24dp"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/ic_launcher_rectangle_inaccount"
-            android:ems="10"
-            android:inputType="textPassword" />
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@null"
+            android:hint="현재 비밀번호를 입력하세요"
+            android:textColor="#000000"
+            android:textColorHint="#cacaca"
+            android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/Setting_Password_Check_Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+        <ImageView
+            android:layout_width="320dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:background=" #f2f2f2"
+            app:srcCompat="@drawable/icon_btn_back" />
+
+        <TextView
+            android:id="@+id/password_btn"
+            android:layout_width="320dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:background="#cfcfcf  "
+            android:gravity="center"
             android:onClick="OpenSettingView"
-            android:text="확인" />
+            android:text="확인"
+            android:textColor="#ffffff  "
+            android:textSize="14sp" />
+
     </LinearLayout>
 
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/setting_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:background="#e1a14a  ">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/icon_btn_back" />
+
+            <TextView
+                android:id="@+id/textView38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="14sp"
+                android:text="회원정보"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="회원정보" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="320dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:gravity="center_vertical"
+            android:text="변경할 비밀번호"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            tools:text="변경할 비밀번호" />
+
+        <EditText
+            android:id="@+id/setting_Password1"
+            android:layout_width="320dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:gravity="clip_vertical"
+            android:hint="변경할 비밀번호를 입력하세요"
+            android:textColor="#000000"
+            android:textColorHint="#cacaca"
+            android:textSize="14sp"
+            tools:hint="변경할 비밀번호를 입력하세요"
+            tools:textColorHint="#cacaca" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="320dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:background=" #f2f2f2"
+            app:srcCompat="@drawable/icon_btn_back" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="320dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:text="비밀번호 확인"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            tools:text="비밀번호 확인" />
+
+        <EditText
+            android:id="@+id/setting_Password2"
+            android:layout_width="320dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="비밀번호를  한번 더 입력하세요"
+            android:textColor="#000000"
+            android:textColorHint="#cacaca"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="320dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:background=" #f2f2f2"
+            app:srcCompat="@drawable/icon_btn_back" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="20dp"
+            android:background=" #f2f2f2"
+            app:srcCompat="@drawable/icon_btn_back" />
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView37"
+                android:layout_width="26dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:text="주소"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                tools:text="주소" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="90dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="14dp"
+                android:background="#cccccc"
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:background="#ffffff"
+                    android:gravity="center"
+                    android:onClick="OpenMap"
+                    android:text="주소 찾기"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    tools:text="주소 찾기" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/setting_Address"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textColorHint="#cacaca"
+            android:textSize="14sp"
+            tools:textColorHint="#cacaca" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="320dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:background=" #f2f2f2"
+            app:srcCompat="@drawable/icon_btn_back" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="20dp"
+            android:background=" #f2f2f2"
+            app:srcCompat="@drawable/icon_btn_back" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="320dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            tools:text="사업자 정보" />
+
+        <EditText
+            android:id="@+id/setting_business"
+            android:layout_width="320dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            tools:hint="사업자 정보를 입력하세요"
+            tools:textColorHint="#cacaca" />
+
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="320dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background=" #f2f2f2"
+            app:srcCompat="@drawable/icon_btn_back" />
+
+
+        <TextView
+            android:id="@+id/Setting_Password_Check_EditText"
+            android:layout_width="320dp"
+            android:layout_height="46dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="50dp"
+            android:background="#cfcfcf"
+            android:gravity="center"
+            android:text="변경하기"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
