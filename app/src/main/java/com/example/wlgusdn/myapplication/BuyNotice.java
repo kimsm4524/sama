@@ -71,6 +71,7 @@ public class BuyNotice extends AppCompatActivity {
     int PicCount;
     String Pickeditem;
     TextView Year,Month,Day;
+    TextView Category;
     TextView Address;
     EditText Countitem,Title,ExtraAddress;
     LinearLayout AddressLayout;
@@ -107,19 +108,10 @@ public class BuyNotice extends AppCompatActivity {
         iv[1] = findViewById(R.id.Pictureiv1);
         iv[2] = findViewById(R.id.Pictureiv2);
         iv[3] = findViewById(R.id.Pictureiv3);
-        rg1 = findViewById(R.id.Buy_Notice_RadioGroup1);
-        rg2 = findViewById(R.id.Buy_Notice_RadioGroup2);
         rg3 = findViewById(R.id.Buy_AddressGroup);
-        r1 = findViewById(R.id.radioButton1);
-        r2 = findViewById(R.id.radioButton2);
-        r3 = findViewById(R.id.radioButton3);
-        r4 = findViewById(R.id.radioButton4);
-        r5 = findViewById(R.id.radioButton5);
-        r6 = findViewById(R.id.radioButton6);
         MyAddress=findViewById(R.id.Buy_MyAddress);
         NewAddress = findViewById(R.id.Buy_NewAddress);
         ExtraAddress = findViewById(R.id.Buy_ExtraAddress);
-        Etc = findViewById(R.id.Etc);
         Year = findViewById(R.id.YearText);
         Month = findViewById(R.id.MonthText);
         Day = findViewById(R.id.DayText);
@@ -131,6 +123,7 @@ public class BuyNotice extends AppCompatActivity {
         fl[1]=findViewById(R.id.Picture1);
         fl[2]=findViewById(R.id.Picture2);
         fl[3]=findViewById(R.id.Picture3);
+        Category = findViewById(R.id.Buy_Textview_Category);
 
         Cancel[0] = findViewById(R.id.Picture_Delete);
         Cancel[1] = findViewById(R.id.Picture_Delete1);
@@ -381,111 +374,46 @@ public class BuyNotice extends AppCompatActivity {
 
             }
         }
-
-    }
-
-    public void SelectCategory(View view) {
-        int id = view.getId();
-
-        rg1.setVisibility(View.VISIBLE);
-        rg2.setVisibility(View.VISIBLE);
-        switch (id) {
-            case R.id.Furniture: {
-                categori = "가구";
-                r1.setText("의자");
-                r2.setText("테이블");
-                r3.setText("소파");
-                r4.setText("침대");
-                r5.setText("옷장");
-                r6.setText("기타");
-                break;
-            }
-            case R.id.Tableware: {
-                categori="식기";
-                r1.setText("접시");
-                r2.setText("그릇");
-                r3.setText("찻잔");
-                r4.setText("컵/텀블러");
-                r5.setText("수저/포크");
-                r6.setText("기타");
-                break;
-            }
-            default: {
-                categori="기타";
-                rg1.setVisibility(View.GONE);
-                rg2.setVisibility(View.GONE);
-                break;
-            }
-
-
-        }
-        rg1.clearCheck();
-        rg2.clearCheck();
-        Etc.setVisibility(View.GONE);
-
-    }
-
-    public void Select(View view)
-    {
-        int id = view.getId();
-        RadioButton rb=findViewById(id);
-
-        Etc.setVisibility(View.GONE);
-
-        switch(id)
+        else if(requestCode==3)
         {
-            case R.id.radioButton1:
-            {
-                rg1.clearCheck();
-                rg2.clearCheck();
-                rg1.check(id);
-                break;
+            if(resultCode == RESULT_OK){
+
+                String st = data.getExtras().getString("result");
+                if (st != null)
+                {
+                    Category.setText(st);
+                    categori = st;
+                }
+
             }
-            case R.id.radioButton2:
-            {
-                rg1.clearCheck();
-                rg2.clearCheck();
-                rg1.check(id);
-                break;
-            }
-            case R.id.radioButton3:
-            {
-                rg1.clearCheck();
-                rg2.clearCheck();
-                rg1.check(id);
-                break;
-            }
-            case R.id.radioButton4:
-            {
-                rg1.clearCheck();
-                rg2.clearCheck();
-                rg2.check(id);
-                break;
-            }
-            case R.id.radioButton5:
-            {
-                rg1.clearCheck();
-                rg2.clearCheck();
-                rg2.check(id);
-                break;
-            }
-            case R.id.radioButton6:
-            {
-                rg1.clearCheck();
-                rg2.clearCheck();
-                rg2.check(id);
-                Etc.setVisibility(View.VISIBLE);
-                //**************************
-                // 적어놓고 등록버튼을 누를때 Pickeditem에 넣어줘야함.*
-                // ***************/
-                break;
+        }
+        else if(requestCode==4)
+        {
+
+            if (resultCode == RESULT_OK) {
+                try {
+                    String st = data.getExtras().getString("data");
+                    if (st != null)
+                        Address.setText(st);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
         }
 
 
-        Pickeditem = rb.getText().toString();
-        Toast.makeText(this,Pickeditem,Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    public void OpenMap(View view)
+    {
+        if(view.getId()==R.id.Buy_NewAddress) {
+            Intent in = new Intent(BuyNotice.this, WebViewActivity.class);
+            startActivityForResult(in, 4);
+        }
+
     }
 
     public void NoticeDate(View view)
@@ -572,6 +500,19 @@ public class BuyNotice extends AppCompatActivity {
         Cancel[count].setVisibility(View.GONE);
         if(count-1>=0)
             Cancel[count-1].setVisibility(View.VISIBLE);
+
+    }
+
+    public void backPress(View view)
+    {
+        finish();
+    }
+
+    public void goCategory(View view)
+    {
+
+        Intent in = new Intent(this,Category.class);
+        startActivityForResult(in,3);
 
     }
 
