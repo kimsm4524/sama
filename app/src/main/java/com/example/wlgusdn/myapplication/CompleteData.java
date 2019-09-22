@@ -6,6 +6,7 @@ public class CompleteData
     public String Title;
     public String seller;
     public String url;
+    public String price;
     public String Count;
     public String Star;
 }

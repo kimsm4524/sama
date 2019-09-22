@@ -43,6 +43,7 @@ public class Account_Setting extends AppCompatActivity
     EditText Password_Edit,business_edit;
     TextView Password_Button;
     String Login = "login";
+    String how;
     SharedPreferences sf;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,7 +61,7 @@ public class Account_Setting extends AppCompatActivity
         Pass2=findViewById(R.id.setting_Password2);
         address = findViewById(R.id.setting_Address);
         Password_Edit = findViewById(R.id.setting_pass);
-        address.setText(sf.getString("address",""));
+        address.setHint(sf.getString("address",""));
         business_edit = findViewById(R.id.setting_business);
         business_edit.setHint(sf.getString("business_num",""));
         Password_Button = findViewById(R.id.password_btn);
@@ -78,13 +79,15 @@ public class Account_Setting extends AppCompatActivity
         if(Pass1==Pass2)
         {
             //DB에 비밀번호 변경
-
-            Toast.makeText(Account_Setting.this,"비밀번호가 변경되었습니다.",Toast.LENGTH_SHORT).show();
-
+            Pass1.setText("");
+            Pass2.setText("");
+            new passAsync().execute();
         }
         else
         {
             //비밀번호를 다시 확인해주세요.
+            Pass1.setText("");
+            Pass2.setText("");
 
             Toast.makeText(Account_Setting.this,"비밀번호가 일치하지 않습니다..",Toast.LENGTH_SHORT).show();
         }
@@ -93,16 +96,15 @@ public class Account_Setting extends AppCompatActivity
 
     }
 
-    public void ChangeAddress(View view)
+    public void ChangeUser(View view)
     {
-        String AddressStr;
-        AddressStr = address.getText().toString();
-
-        //DB에 AddressStr 저장하기
-
-
-        Toast.makeText(Account_Setting.this,"주소가 변경되었습니다.",Toast.LENGTH_SHORT).show();
-
+        if(business_edit.getText()!=null) {
+            SharedPreferences.Editor editor = sf.edit();
+            editor.putString("address", address.getText().toString());
+            editor.putString("business_num", business_edit.getText().toString());
+            editor.commit();
+            new userAsync().execute();
+        }
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -168,7 +170,6 @@ public class Account_Setting extends AppCompatActivity
             }
         }
 
-
         protected Void doInBackground(Void... voids) {//user thread
             String url = "http://52.79.255.160:8080/login.jsp";
             String param = "?id=" + sf.getString("id","") + "&pass=" + SHA256(Password_Edit.getText().toString());
@@ -228,4 +229,56 @@ public class Account_Setting extends AppCompatActivity
         return SHA;
 
     }
+    class passAsync extends AsyncTask<Void, String, Void>
+    {
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(Account_Setting.this,"비밀번호가 변경되었습니다.",Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String url = "http://52.79.255.160:8080/changepass.jsp";
+            //제목 -> Title.getText().toString();
+            String param = null;
+            param = "?id="+sf.getString("id","")+"&pass="+SHA256(Pass1.getText().toString());
+            Document xml = null;
+            String u = url +param;
+            Log.i("zzzzzzzzzzzz",u);
+            try {
+                xml = Jsoup.connect(u).get();//url에 접속해서 xml파일을 받아옴
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+    class userAsync extends AsyncTask<Void, String, Void> {
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(Account_Setting.this,"주소가 변경되었습니다.",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String url = "http://52.79.255.160:8080/update.jsp";
+            //제목 -> Title.getText().toString();
+            String param = null;
+            param = "?id=" + sf.getString("id", "") + "&address=" + address.getText().toString() + "&bnum=" + business_edit.getText().toString();
+
+            Document xml = null;
+            String u = url + param;
+            Log.i("zzzzzzzzzzzz", u);
+            try {
+                xml = Jsoup.connect(u).get();//url에 접속해서 xml파일을 받아옴
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
 }

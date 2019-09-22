@@ -69,9 +69,9 @@ public class SellListAdapter extends BaseAdapter
 
         Picasso.get().load(MySellData.get(position).url).into(SellImage);
 
-        SellDataTitle.setText("제목 : " + MySellData.get(position).Title);
-        SellDataCount.setText("수랑 : "+MySellData.get(position).Count);
-        SellDataPrice.setText("개당 가격 : "+MySellData.get(position).Price);
+        SellDataTitle.setText( MySellData.get(position).Title);
+        SellDataCount.setText(MySellData.get(position).Count);
+        SellDataPrice.setText(MySellData.get(position).Price+"원");
         return convertView;
     }
 }

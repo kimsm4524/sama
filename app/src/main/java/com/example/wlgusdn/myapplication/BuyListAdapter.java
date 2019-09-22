@@ -73,10 +73,10 @@ public class BuyListAdapter extends BaseAdapter
         TextView BuyDataHit = convertView.findViewById(R.id.BuyDataHit);
 
         Picasso.get().load(MyBuyData.get(position).url).into(BuyDataImage);
-        BuyDataTitle.setText("제목 : " +MyBuyData.get(position).Title);
-        BuyDataCount.setText("수량 : "+ MyBuyData.get(position).Count);
-        BuyDataSeller.setText("입찰자 수: "+ MyBuyData.get(position).seller);
-        BuyDataHit.setText("조회수 : "+ MyBuyData.get(position).hit);
+        BuyDataTitle.setText(MyBuyData.get(position).Title);
+        BuyDataCount.setText( MyBuyData.get(position).Count);
+        BuyDataSeller.setText(MyBuyData.get(position).seller);
+        BuyDataHit.setText( MyBuyData.get(position).hit);
         return convertView;
     }
 

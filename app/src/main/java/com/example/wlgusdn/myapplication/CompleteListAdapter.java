@@ -68,10 +68,12 @@ public class CompleteListAdapter extends BaseAdapter
         TextView CompleteDataCount =  convertView.findViewById(R.id.CompleteDataCount);
         TextView CompleteDataStar = convertView.findViewById(R.id.CompleteDataStar);
         ImageView CompleteImage = convertView.findViewById(R.id.CompleteImage);
+        TextView CompletePrice = convertView.findViewById(R.id.CompletePrice);
 
         CompleteDataCount.setText(MyCompleteData.get(position).Count);
         CompleteDataTitle.setText(MyCompleteData.get(position).Title);
         CompleteDataStar.setText(MyCompleteData.get(position).Star);
+        CompletePrice.setText(MyCompleteData.get(position).price+"원");
         Picasso.get().load(MyCompleteData.get(position).url).into(CompleteImage);
 
 

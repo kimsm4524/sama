@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,SwipeRefreshLayout.OnRefreshListener {
 
     ScrollView nscv;
-    HorizontalScrollView scv;
+//    HorizontalScrollView scv;
     public static String Myname;
     GridView gl;
     NoticeListAdapteraaa nadapter;
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity
         Logoutiv = findViewById(R.id.Main_Logout);
 
         nscv = findViewById(R.id.Main_Nest);
-        scv = findViewById(R.id.Main_Scv);
+//        scv = findViewById(R.id.Main_Scv);
 
 
 
@@ -265,17 +265,17 @@ public class MainActivity extends AppCompatActivity
 
         gl = (GridView) findViewById(R.id.Main_GridView);
 
-        scv.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                nscv.requestDisallowInterceptTouchEvent(true);
-
-
-                return  false;
-
-            }
-        });
+//        scv.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//
+//                nscv.requestDisallowInterceptTouchEvent(true);
+//
+//
+//                return  false;
+//
+//            }
+//        });
 
 
     }

@@ -15,7 +15,8 @@
         android:id="@+id/Setting_Password_Check"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -30,6 +31,12 @@
                 android:id="@+id/imageView13"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/icon_btn_back" />
 
             <TextView
@@ -120,6 +127,12 @@
                 android:id="@+id/imageView"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/icon_btn_back" />
 
             <TextView
@@ -210,6 +223,21 @@
             android:background=" #f2f2f2"
             app:srcCompat="@drawable/icon_btn_back" />
 
+        <TextView
+            android:id="@+id/setting_Password_Check_EditText"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="50dp"
+            android:background="#cfcfcf"
+            android:gravity="center"
+            android:onClick="ChangePassword"
+            android:text="변경하기"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
@@ -280,14 +308,6 @@
             android:background=" #f2f2f2"
             app:srcCompat="@drawable/icon_btn_back" />
 
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_marginTop="20dp"
-            android:background=" #f2f2f2"
-            app:srcCompat="@drawable/icon_btn_back" />
-
         <TextView
             android:id="@+id/textView24"
             android:layout_width="320dp"
@@ -322,14 +342,17 @@
 
 
         <TextView
-            android:id="@+id/Setting_Password_Check_EditText"
+            android:id="@+id/Setting_user_change"
             android:layout_width="320dp"
             android:layout_height="46dp"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="50dp"
             android:background="#cfcfcf"
             android:gravity="center"
+            android:onClick="ChangeUser"
             android:text="변경하기"
             android:textColor="#ffffff"
             android:textSize="14sp" />
