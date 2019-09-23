@@ -6,40 +6,48 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class WebViewActivity extends AppCompatActivity {
 
     private WebView browser;
-
+    Intent intent;
+    EditText extraadd;
+    TextView address;
     class MyJavaScriptInterface
     {
         @JavascriptInterface
         @SuppressWarnings("unused")
         public void processDATA(String data) {
-
-            Bundle extra = new Bundle();
-            Intent intent = new Intent();
-            extra.putString("data", data);
-            intent.putExtras(extra);
-            setResult(RESULT_OK, intent);
-            finish();
-
-        }
+            address.setText(data); }
     }
+    public void cancle(View view)
+    {
 
+        finish();
+    }
+    public void input(View view)
+    {
+        intent.putExtra("address",address.getText().toString()+extraadd.getText().toString());
+        setResult(RESULT_OK,intent);
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
-
+        extraadd = findViewById(R.id.extraadd);
+        address = findViewById(R.id.address);
         browser = (WebView) findViewById(R.id.webView);
         browser.getSettings().setJavaScriptEnabled(true);
         browser.addJavascriptInterface(new MyJavaScriptInterface(), "Android");
-
+        intent = new Intent();
         browser.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {

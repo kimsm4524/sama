@@ -18,7 +18,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:background="@null"
+            android:orientation="vertical">
 
 
             <android.support.constraint.ConstraintLayout
@@ -45,9 +46,9 @@
                     android:id="@+id/textView20"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="155dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="155dp"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="주문하기"
@@ -67,7 +68,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="25dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -78,13 +79,14 @@
                         android:gravity="center"
                         android:text="제목"
                         android:textColor="#000000"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <EditText
                         android:id="@+id/Buy_Title"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="3"
+                        android:background="@null"
                         android:ems="10"
                         android:hint="무제"
                         android:inputType="textPersonName" />
@@ -94,14 +96,14 @@
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/rectangle"
-                    android:layout_marginLeft="96dp"/>
+                    android:layout_marginLeft="96dp"
+                    app:srcCompat="@drawable/rectangle" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="25dp">
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView0"
@@ -111,7 +113,7 @@
                         android:gravity="center"
                         android:text="사진"
                         android:textColor="#000000"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/textView3"
@@ -122,16 +124,15 @@
                         android:text="원하는 물품의 사진을 등록하세요.
 미등록시 기본 사진으로 등록됩니다."
                         android:textColor="#cacaca"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
-
 
 
                 <android.support.v7.widget.GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="100dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     app:columnCount="2"
                     app:rowCount="2">
 
@@ -147,7 +148,7 @@
                             android:adjustViewBounds="true"
                             android:background="#f2f2f2"
                             android:onClick="UpLoadPicture"
-                            android:scaleType="centerCrop"
+                            android:scaleType="fitXY"
                             app:srcCompat="@drawable/img_camera" />
 
                         <ImageButton
@@ -247,7 +248,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -257,34 +258,28 @@
                         android:gravity="center"
                         android:text="카테고리"
                         android:textColor="#000000"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/Buy_Textview_Category"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:onClick="goCategory"
                         android:layout_marginRight="30dp"
                         android:drawableRight="@drawable/ico_category"
+                        android:gravity="center_vertical"
+                        android:onClick="goCategory"
                         android:text="가구"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="96dp"
-                    app:srcCompat="@drawable/rectangle" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
                 android:orientation="horizontal">
 
@@ -296,13 +291,14 @@
                     android:gravity="center"
                     android:text="수량"
                     android:textColor="#000000"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/Countitem"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
+                    android:background="@null"
                     android:ems="10"
                     android:gravity="left"
                     android:hint="0"
@@ -316,7 +312,16 @@
                     android:gravity="left"
                     android:text="개"
                     android:textSize="20sp" />
+
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="96dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/rectangle" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -338,7 +343,7 @@
                         android:gravity="center"
                         android:text="배송주소"
                         android:textColor="#000000"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <RadioButton
                         android:id="@+id/Buy_MyAddress"
@@ -352,8 +357,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="새로운 주소"
-                        android:onClick="OpenMap"/>
+                        android:text="새로운 주소" />
                 </RadioGroup>
 
 
@@ -364,28 +368,25 @@
                 android:id="@+id/Buy_Address"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/button_stroke"
                 android:ems="10"
                 android:gravity="center"
                 android:inputType="textMultiLine"
-                android:textSize="30sp" />
-
-            <EditText
-                android:id="@+id/Buy_ExtraAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="추가주소"
-                android:inputType="textPersonName" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="vertical"
-                android:layout_marginTop="25dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <TextView
@@ -396,53 +397,53 @@
                         android:gravity="center"
                         android:text="희망 날짜"
                         android:textColor="#000000"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/button5"
                         android:layout_width="90dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="35dp"
                         android:layout_weight="0"
-                        android:onClick="NoticeDate"
                         android:background="@drawable/button_stroke"
+                        android:onClick="NoticeDate"
                         android:text="날짜 설정"
-                        android:textColor="#e1a14a"/>
+                        android:textColor="#e1a14a" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="96dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/YearText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="20sp"
                         android:gravity="right"
-                        android:text="년" />
+                        android:text="년"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/MonthText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="20sp"
                         android:gravity="right"
-                        android:text="월" />
+                        android:text="월"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/DayText"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:textSize="20sp"
                         android:gravity="right"
-                        android:text="일" />
+                        android:text="일"
+                        android:textSize="18sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -457,7 +458,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -468,28 +469,39 @@
                     android:gravity="center"
                     android:text="조건"
                     android:textColor="#000000"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/Item_Character"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
+                    android:background="@null"
                     android:ems="10"
                     android:hint="엔틱한 느낌, 밝은 색상의 나무, 목재는 느티나무, 높이는 50 ~ 60cm 등등 "
                     android:inputType="textMultiLine"
                     android:textSize="14sp" />
+
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="96dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/rectangle" />
 
             <Button
                 android:id="@+id/Notice_Register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="Notice_Register"
+                android:layout_marginBottom="30dp"
                 android:layout_marginTop="20dp"
-                android:text="등록하기"
                 android:background="@drawable/button_stroke"
-                android:textColor="#e1a14a"/>
+                android:onClick="Notice_Register"
+                android:text="등록하기"
+                android:textColor="#e1a14a" />
 
         </LinearLayout>
     </ScrollView>

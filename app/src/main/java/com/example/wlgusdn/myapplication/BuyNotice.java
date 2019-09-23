@@ -111,7 +111,6 @@ public class BuyNotice extends AppCompatActivity {
         rg3 = findViewById(R.id.Buy_AddressGroup);
         MyAddress=findViewById(R.id.Buy_MyAddress);
         NewAddress = findViewById(R.id.Buy_NewAddress);
-        ExtraAddress = findViewById(R.id.Buy_ExtraAddress);
         Year = findViewById(R.id.YearText);
         Month = findViewById(R.id.MonthText);
         Day = findViewById(R.id.DayText);
@@ -367,10 +366,7 @@ public class BuyNotice extends AppCompatActivity {
         else if(requestCode==SEARCH_ADDRESS_ACTIVITY)
         {
             if(resultCode == RESULT_OK){
-
-                String st = data.getExtras().getString("data");
-                if (st != null)
-                    Address.setText(st);
+                Address.setText(data.getStringExtra("address"));
 
             }
         }
@@ -405,16 +401,6 @@ public class BuyNotice extends AppCompatActivity {
 
     }
 
-
-
-    public void OpenMap(View view)
-    {
-        if(view.getId()==R.id.Buy_NewAddress) {
-            Intent in = new Intent(BuyNotice.this, WebViewActivity.class);
-            startActivityForResult(in, 4);
-        }
-
-    }
 
     public void NoticeDate(View view)
     {

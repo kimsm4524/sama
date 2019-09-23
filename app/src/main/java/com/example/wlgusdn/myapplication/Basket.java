@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -90,6 +91,8 @@ public void onBackPressed() {
                     startActivity(i);
                 }
             });
+            TextView bar = findViewById(R.id.barbasket);
+            bar.setText("   "+BData.size()+"개의 글이 있습니다.");
             setListViewHeightBasedOnChildren(Basketlv);
 
             Log.d("checkzzz","Listing");
