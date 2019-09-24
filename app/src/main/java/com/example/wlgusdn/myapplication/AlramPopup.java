@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
@@ -148,4 +149,9 @@ public class AlramPopup extends Activity {
         finish();
 
     }
+    public void backPress(View view)
+    {
+        finish();
+    }
+
 }

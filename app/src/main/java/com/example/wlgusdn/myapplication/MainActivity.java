@@ -138,16 +138,19 @@ public class MainActivity extends AppCompatActivity
         id = sf.getString("id", "");
         Myname = id;
         token = sf.getString("Token","");
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View header_view = navigationView.getHeaderView(0);
         if(!sf.contains("id"))
         {
             Loginiv.setVisibility(View.VISIBLE);
             Logoutiv.setVisibility(View.GONE);
-
+            header_view.findViewById(R.id.Nav_Login).setVisibility(View.VISIBLE);
         }
         else
         {
             Loginiv.setVisibility(View.GONE);
             Logoutiv.setVisibility(View.VISIBLE);
+            header_view.findViewById(R.id.Nav_id).setVisibility(View.VISIBLE);
         }
 
        l = new Loading(MainActivity.this);
@@ -259,7 +262,6 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(MainActivity.this);
 
 
@@ -764,7 +766,12 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-
+    public void login(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        startActivity(intent);
+        finish();
+    }
 
 
 }

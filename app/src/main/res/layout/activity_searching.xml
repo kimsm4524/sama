@@ -12,8 +12,45 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#e1a14a  "
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:onClick="backPress"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/icon_btn_back" />
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="14sp"
+                android:text="주문하기"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
 
 
         <android.support.v4.widget.SwipeRefreshLayout
@@ -32,82 +69,106 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#ffffff"
+                    android:gravity="center_horizontal"
                     android:orientation="vertical">
 
-                    <android.support.v7.widget.GridLayout
+                    <LinearLayout
                         android:id="@+id/one"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
                         android:background="#f2f2f2"
-                        android:gravity="center"
-                        app:columnCount="3"
-                        app:rowCount="2">
+                        android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/SearchButton1"
-                            android:layout_width="120dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:onClick="SelectCategory"
-                            android:textColor="#e1a14a"
-                            android:textSize="14sp"
-                            android:background="#f2f2f2"
-                            android:text="가구" />
-
-                        <Button
-                            android:id="@+id/SearchButton2"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
                             android:layout_marginLeft="10dp"
-                            android:onClick="SelectCategory"
-                            android:textColor="#afafaf"
-                            android:background="#f2f2f2"
-                            android:text="식기" />
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="2dp"
+                            android:orientation="horizontal">
 
-                        <Button
-                            android:id="@+id/SearchButton3"
-                            android:layout_width="120dp"
+                            <Button
+                                android:id="@+id/SearchButton1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:onClick="SelectCategory"
+                                android:text="가구"
+                                android:textColor="#e1a14a"
+                                android:textSize="14sp" />
+
+                            <Button
+                                android:id="@+id/SearchButton2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:onClick="SelectCategory"
+                                android:text="식기"
+                                android:textColor="#afafaf" />
+
+                            <Button
+                                android:id="@+id/SearchButton3"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:onClick="SelectCategory"
+                                android:text="식료품"
+                                android:textColor="#afafaf" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
                             android:layout_marginLeft="10dp"
-                            android:onClick="SelectCategory"
-                            android:textColor="#afafaf"
-                            android:background="#f2f2f2"
-                            android:text="식료품" />
+                            android:layout_marginRight="10dp"
+                            android:orientation="horizontal">
 
-                        <Button
-                            android:id="@+id/SearchButton4"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:onClick="SelectCategory"
-                            android:textColor="#afafaf"
-                            android:background="#f2f2f2"
-                            android:text="미정" />
+                            <Button
+                                android:id="@+id/SearchButton4"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:onClick="SelectCategory"
+                                android:text="미정"
+                                android:textColor="#afafaf" />
 
-                        <Button
-                            android:id="@+id/SearchButton5"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:onClick="SelectCategory"
-                            android:textColor="#afafaf"
-                            android:background="#f2f2f2"
-                            android:text="미정" />
+                            <Button
+                                android:id="@+id/SearchButton5"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:onClick="SelectCategory"
+                                android:text="미정"
+                                android:textColor="#afafaf" />
 
-                        <Button
-                            android:id="@+id/SearchButton6"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:onClick="SelectCategory"
-                            android:textColor="#afafaf"
-                            android:background="#f2f2f2"
-                            android:text="미정" />
-                    </android.support.v7.widget.GridLayout>
+                            <Button
+                                android:id="@+id/SearchButton6"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:onClick="SelectCategory"
+                                android:text="미정"
+                                android:textColor="#afafaf" />
+                        </LinearLayout>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/three"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginTop="15dp"
                         android:orientation="horizontal">
 
@@ -115,25 +176,27 @@
                             android:id="@+id/Search_Edit_Title"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="3"
-                            android:ems="10"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="10dp"
-                            android:hint="검색어를 입력해주세요."
+                            android:layout_weight="7"
                             android:background="#f2f2f2"
-                            android:inputType="textPersonName" />
+                            android:ems="10"
+                            android:hint="  검색어를 입력해주세요."
+                            android:inputType="textPersonName"
+                            android:textColorHint="@android:color/white" />
 
                         <Button
                             android:id="@+id/Search_Button_TitleSearch"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:background="#c28430"
-                            android:onClick="TitleSearch"
-                            android:textColor="#ffffff"
                             android:drawableLeft="@drawable/ico_btn_search"
-                            android:paddingLeft="10dp"
-                            android:text="검색" />
+                            android:gravity="center"
+                            android:onClick="TitleSearch"
+                            android:paddingLeft="2dp"
+                            android:text="검색"
+                            android:textColor="#ffffff" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -147,8 +210,8 @@
                             android:layout_width="0dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center"
-                            android:layout_marginRight="10dp"
                             android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
                             android:layout_weight="3"
                             android:gravity="left"
                             android:text="전체"
@@ -161,10 +224,10 @@
                             android:layout_height="50dp"
                             android:layout_gravity="right"
                             android:layout_weight="1"
+                            android:background="#ffffff"
                             android:gravity="center"
                             android:onClick="SelectSort"
                             android:text="최신순 ▼"
-                            android:background="#ffffff"
                             android:textSize="12sp" />
 
 
@@ -172,10 +235,12 @@
 
                     <GridView
                         android:id="@+id/Search_Grid"
-                        android:layout_width="320dp"
+                        android:layout_width="360dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:numColumns="2">
+                        android:gravity="center"
+                        android:numColumns="2"
+                        android:paddingTop="10dp">
 
                     </GridView>
 

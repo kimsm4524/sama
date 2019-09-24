@@ -31,6 +31,7 @@
                 android:id="@+id/imageView13"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
+                android:onClick="backPress"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

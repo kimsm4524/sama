@@ -133,4 +133,8 @@ public void onBackPressed() {
         ListingBd bd = new ListingBd();
         bd.execute();
     }
+    public void backPress(View view)
+    {
+        finish();
+    }
 }

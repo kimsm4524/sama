@@ -138,6 +138,10 @@ public class Account_Setting extends AppCompatActivity
 
 
     }
+    public void backPress(View view)
+    {
+        finish();
+    }
 
 
     public void OpenMap(View view)

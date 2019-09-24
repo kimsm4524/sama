@@ -79,5 +79,11 @@ public class MyTrade extends AppCompatActivity {
         adapter.addFragment(fragtrade, "거래 진행중인 글");
         adapter.addFragment(fragfinish, "거래 완료된 글");
         viewPager.setAdapter(adapter);
+
     }
+    public void backPress(View view)
+    {
+        finish();
+    }
+
 }

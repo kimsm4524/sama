@@ -74,7 +74,6 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
     String sort = "postnum";
     String categori,categori2;
     GridView gl;
-    android.support.v7.widget.GridLayout one;
     LinearLayout two;
     String str;
     EditText Title;
@@ -89,7 +88,6 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
 
         PastButton = findViewById(R.id.SearchButton1);
         sf = getSharedPreferences(Login, 0);
-        one = findViewById(R.id.one);
         two = findViewById(R.id.two);
         Title = findViewById(R.id.Search_Edit_Title);
         id = sf.getString("id", "");
@@ -628,14 +626,14 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
                 ImageView NoticeDataImage = convertView.findViewById(R.id.Notice1_imageView);
                 TextView NoticeDataCount = convertView.findViewById(R.id.Notice1_Count);
                 TextView NoticeDataPersonNum = convertView.findViewById(R.id.Notice1_BidCount);
-                TextView NoticeDataDate = convertView.findViewById(R.id.Notice1_Title);
+                TextView NoticeDataTitle= convertView.findViewById(R.id.Notice1_Title);
                 Log.i("zzzzzzzzzzzzzz",MyNoticeData.get(position).url);
 
 
                 Picasso.get().load(MyNoticeData.get(position).url).into(NoticeDataImage);
                 NoticeDataCount.setText(""+MyNoticeData.get(position).Count);
                 NoticeDataPersonNum.setText(""+MyNoticeData.get(position).PersonNum);
-                NoticeDataDate.setText(""+MyNoticeData.get(position).Date);
+                NoticeDataTitle.setText(""+MyNoticeData.get(position).Title);
 
 
 
@@ -646,6 +644,9 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
 
 
     }
-
+    public void backPress(View view)
+    {
+        finish();
+    }
 
 }
