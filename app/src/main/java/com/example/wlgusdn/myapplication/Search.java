@@ -347,6 +347,7 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
                 nd.postnum = e.select("postnum").text().toString();
                 nd.Hit = e.select("hits").text().toString();
                 nd.id = e.select("postid").text();
+                nd.Title = e.select("title").text();
                 if(e.select("true").text().equals(id))
                     nd.basket=1;
                 else
@@ -411,6 +412,7 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
                 nd.PersonNum = e.select("seller").text().toString();
                 nd.postnum = e.select("postnum").text().toString();
                 nd.Hit = e.select("hits").text().toString();
+                nd.Title = e.select("title").text();
                 nd.id = e.select("postid").text();
                 nd.url="http://samaimage.s3.ap-northeast-2.amazonaws.com/thumbnail/post/"+nd.postnum+"/image0.png";
                 NData.add(nd);
@@ -473,6 +475,7 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
                 nd.postnum = e.select("postnum").text().toString();
                 nd.Hit = e.select("hits").text().toString();
                 nd.id = e.select("postid").text();
+                nd.Title = e.select("title").text();
                 nd.url="http://samaimage.s3.ap-northeast-2.amazonaws.com/thumbnail/post/"+nd.postnum+"/image0.png";
                 NData.add(nd);
             }
@@ -534,6 +537,7 @@ public class Search extends AppCompatActivity implements SwipeRefreshLayout.OnRe
                 nd.PersonNum = e.select("seller").text().toString();
                 nd.postnum = e.select("postnum").text().toString();
                 nd.Hit = e.select("hits").text().toString();
+                nd.Title = e.select("title").text();
                 nd.id = e.select("postid").text();
                 nd.url="http://samaimage.s3.ap-northeast-2.amazonaws.com/thumbnail/post/"+nd.postnum+"/image0.png";
                 NData.add(nd);

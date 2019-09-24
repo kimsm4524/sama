@@ -68,7 +68,7 @@ public class Account extends AppCompatActivity {
 
     ImageView AccountImage,BusinessCardImage;
     TextView tv,Adress,CompanyAdress,PhoneNumber;
-    EditText Id, Password1,Password2,BusinessNumber,CompanyName,Name,ExtraAdress,CompanyExtraAddress;
+    EditText Id, Password1,Password2,BusinessNumber,CompanyName,Name;
 
     private FirebaseDatabase mFirebaseDatabase;
     private ChildEventListener mChildEventListener;
@@ -115,8 +115,6 @@ public class Account extends AppCompatActivity {
         CompanyName=findViewById(R.id.Account_CompanyName);
         Name=findViewById(R.id.Account_Name);
         PhoneNumber=findViewById(R.id.Account_Phone_Number);
-        ExtraAdress = findViewById(R.id.ExtraAddress);
-        CompanyExtraAddress = findViewById(R.id.CompanyExtraAddress);
 
         imgAndroid = findViewById(R.id.Account_img_android);
         anim = AnimationUtils.loadAnimation(this, R.anim.loading);
@@ -363,7 +361,7 @@ public class Account extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 try {
-                    String st = data.getExtras().getString("data");
+                    String st = data.getStringExtra("address");
                     if (st != null)
                         Adress.setText(st);
                 } catch (Exception e) {
@@ -377,7 +375,7 @@ public class Account extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 try {
-                    String st = data.getExtras().getString("data");
+                    String st = data.getStringExtra("address");
                     if (st != null)
                         CompanyAdress.setText(st);
 
@@ -506,9 +504,9 @@ public class Account extends AppCompatActivity {
             // 70.12.244.133
             String url = "http://52.79.255.160:8080/signup.jsp";
             String param = "?id=" + Id.getText().toString() + "&name=" + Name.getText().toString() +
-                    "&phonenumber=" + PhoneNumber.getText().toString() + "&address=" + Adress.getText().toString()+ExtraAdress.getText().toString()
+                    "&phonenumber=" + PhoneNumber.getText().toString() + "&address=" + Adress.getText().toString()
                     + "&business_number=" + BusinessNumber.getText().toString() + "&passwd=" + SHA256(Password1.getText().toString())
-                    + "&com_name=" + CompanyName.getText().toString() + "&com_add=" + CompanyAdress.getText().toString()+CompanyExtraAddress.getText().toString();
+                    + "&com_name=" + CompanyName.getText().toString() + "&com_add=" + CompanyAdress.getText().toString();
             Document xml = null;
             String u = url + param;
             Log.i("zzzzzzzzzzzz", u);
